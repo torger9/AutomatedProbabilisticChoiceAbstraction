@@ -1,12 +1,13 @@
 from momba import model as momba_model
 from momba.model.expressions import ArithmeticBinary
+from momba.model.expressions import IntegerConstant
 from momba.model.operators import BooleanOperator
 from momba.model.operators import ArithmeticBinaryOperator
 
 
 class VariableState:
 
-    def __init__(self, var_values, probability=1, guard=None):
+    def __init__(self, var_values, probability=IntegerConstant(integer=1), guard=None):
         if isinstance(var_values, VariableState):
             var_state = var_values
             self.var_values = dict(var_state.var_values)
@@ -20,7 +21,12 @@ class VariableState:
         
 
     def compound_probability(self, prob):
-        self.probability = ArithmeticBinary(ArithmeticBinaryOperator.MUL, self.probability, prob)
+        if self.probability == IntegerConstant(integer=1) or self.probability == None:
+            self.probability = prob
+        elif prob == None:
+            return
+        else:
+            self.probability = ArithmeticBinary(ArithmeticBinaryOperator.MUL, self.probability, prob)
 
     def conjuct_guard(self, guard):
         if self.guard == None:
@@ -38,9 +44,8 @@ class VariableState:
 
     ## This needs to be updated to work with the guard variables as well
     def is_fully_evaluated(self, target, expression):
-        for var in expression.used_names:
-            if var != target:
-                return False
+        if len(expression.used_names) > 0:
+            return False
 
         return True
 

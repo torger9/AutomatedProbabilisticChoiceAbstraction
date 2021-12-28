@@ -16,8 +16,12 @@ process Clock() {
 
 	tick {= clk += 1 =};
 
-	Clock()
-
+	if (clk!=3) {
+		Clock()
+	}
+    else {
+        stop
+    }
 
 }
 
@@ -37,6 +41,16 @@ process Top() {
         :(1/6): {= x = 3, y=2 =}
     };
 
+    if(x > y) {
+		tick {= x+=1 =}
+	}
+	else if (x <y ){
+		tick {= y+=1 =}
+	}
+    else {
+        tick
+    };
+
 
 
 	if(x > y) {
@@ -49,20 +63,15 @@ process Top() {
         tick
     };
 
-	if(clk ==2) {
-		stop
-	}
-	else {
-		Top()
-	}
+
+	Top()
+
 
 
 }
-
-
-
 
 par{
-:: 	Top()
-::  Clock()
-}
+    :: 	Top()
+    ::  Clock()
+    }
+    

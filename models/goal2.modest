@@ -1,0 +1,55 @@
+option "dtmc";
+
+
+int x = 0;
+int y = 0;
+int z = 1;
+int clk = 0;
+
+action tick;
+
+property p0 = Pmax(<>( (clk == 3) && (z==0)));
+property p1 = Pmax(<>( (clk == 3) && (z==1)));
+property p2 = Pmax(<>( (clk == 3) && (z==2)));
+
+process Clock() {
+
+	tick {= clk += 1 =};
+
+	if (clk!=3) {
+		Clock()
+	}
+    else {
+        stop
+    }
+
+}
+
+process Top() {
+
+    tick;
+
+    tick;
+    tick palt {
+        :(3/6): {= z+=1 =}
+
+        :(1/6): {= z-=1 =}
+
+        :(2/6): {= z=z =}
+    };
+
+
+
+	Top()
+
+
+
+}
+
+
+
+
+par{
+:: 	Top()
+::  Clock()
+}
