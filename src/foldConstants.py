@@ -4,6 +4,11 @@ import typing as t
 import functools
 from momba import model as momba_model
 
+## This code was given by the momba creators as an example of contant folding, I am not entirely sure
+## how it works
+## TODO: It needs to work for all expression types. Right now it doesn't even work for 
+## equality, only comparison
+
 @d.dataclass(frozen=True)
 class Value:
     value: t.Union[int, float, bool]

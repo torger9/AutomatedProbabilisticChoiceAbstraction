@@ -9,15 +9,15 @@ int clk = 0;
 
 action tick;
 
-property p0 = Pmax(<>( (clk == 3) && (z==0)));
-property p1 = Pmax(<>( (clk == 3) && (z==1)));
-property p2 = Pmax(<>( (clk == 3) && (z==2)));
+property p0 = Pmax(<>( (clk == 4) && (z==1)));
+property p1 = Pmax(<>( (clk == 4) && (z==2)));
+property p2 = Pmax(<>( (clk == 4) && (z==3)));
 
 process Clock() {
 
 	tick {= clk += 1 =};
 
-	if (clk!=3) {
+	if (clk!=4) {
 		Clock()
 	}
     else {
@@ -64,6 +64,8 @@ process Top() {
     else {
         tick
     };
+
+    tick {= z+=1 =};
 
 
 	Top()

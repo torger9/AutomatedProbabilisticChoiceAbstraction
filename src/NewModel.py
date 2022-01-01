@@ -15,14 +15,19 @@ from VariableState import VariableState
 
 
 
+def make_new_model(model, context, initial_state, target_states, removable_vars_evaluated, cannot_remove_set):
+    """
+    Creates a new automata based on an existing one, but with a set of unnecessary variables removed,
+    using their known values to preserve behavior
+    """
 
-
-def make_new_model(model, context, initial_state, target_state, removable_vars_evaluated, cannot_remove_set):
+    #Setup
     new_model = context.create_automaton(name="Abstracted")
     new_model.locations.clear()
     new_model.initial_locations.clear()
     new_model.edges.clear()
 
+    #Variables for breadth first search
     location_queue = list()
     location_queue.append(initial_state)
     visited = set()
@@ -35,10 +40,11 @@ def make_new_model(model, context, initial_state, target_state, removable_vars_e
     while len(location_queue) > 0:
         curr_location = location_queue.pop()
 
-
-        if curr_location == target_state:
-            new_edge_set = evaluate_edges(model.get_outgoing_edges(curr_location), removable_vars_evaluated, cannot_remove_set)
+        # If the location is a target state, we have to use the known values of the variables to preserve behavior
+        if curr_location in target_states:
+            new_edge_set = evaluate_edges(model.get_outgoing_edges(curr_location), removable_vars_evaluated[curr_location], cannot_remove_set)
         else:
+        #If it isn't a target state, we just remove the variables entirely and merge any edges that end up being the same
             new_edge_set = merge_edges(model.get_outgoing_edges(curr_location), cannot_remove_set)
         
         
@@ -55,24 +61,22 @@ def make_new_model(model, context, initial_state, target_state, removable_vars_e
     return new_model
 
 
-# Needs to be modified to work with guards
+# TODO: This completely ignores guards, just maintaining them. It needs to be adapted in the case that the guards use variables that will be removed
 def merge_edges(edge_set, cannot_remove_set):
     new_edges = set()
     for edge in edge_set:
         new_destinations = list()
         for destination in edge.destinations: 
             needed_assignments = set()
+            # Keep only assignments that modify the variables we are keeping
             for assignment in destination.assignments:
                 if assignment.target in cannot_remove_set:
                     needed_assignments.add(assignment)
-                else:
-                    pass
 
-            for assignment in needed_assignments:
-                if assignment.target not in cannot_remove_set:
-                    print(f"This assignment is messed {assignment}")
             merged = False
             for i,d in enumerate(new_destinations):
+                # If this new destination now matches one we already created, we merge the two into one,
+                # summing their probabilities when we do
                 if d.location == destination.location and frozenset(needed_assignments) == d.assignments:
                     merged = True
                     new_prob = ArithmeticBinary(ArithmeticBinaryOperator.ADD, d.probability, destination.probability)
@@ -81,26 +85,22 @@ def merge_edges(edge_set, cannot_remove_set):
 
             if not merged:
                 new_destinations.append(momba_model.Destination(destination.location, destination.probability, frozenset(needed_assignments)))
-        for destination in new_destinations:
-            for assignment in needed_assignments:
-                    if assignment.target not in cannot_remove_set:
-                        print(f"This assignment is messed {assignment}")
+
         new_edge = momba_model.Edge(edge.location, frozenset(new_destinations), edge.action_pattern, edge.guard, edge.rate, edge.annotation, edge.observation)
         new_edges.add(new_edge)
-    for edge in new_edges:
-        for destination in edge.destinations:
-                for assignment in destination.assignments:
-                        if assignment.target not in cannot_remove_set:
-                            print(f"This assignment is messed {assignment}")
+
+        #TODO might need to see if new edges need to be checked for merging like the destinations were
+
     return new_edges
 
 
-        # Might need to merge the edges here as well
             
 
 #Needs to be modified to work with guards
 def evaluate_edges(edge_set, removable_vars_evaluated, cannot_remove_set):
     new_edges = set()
+
+    # This first portion is the same as the merging method
     for possibility in removable_vars_evaluated:
         for edge in edge_set:
             new_destinations = list()
@@ -124,8 +124,10 @@ def evaluate_edges(edge_set, removable_vars_evaluated, cannot_remove_set):
                     
                     new_destinations.append( momba_model.Destination(destination.location, (ArithmeticBinary(ArithmeticBinaryOperator.MUL, destination.probability, possibility.probability) if destination.probability else possibility.probability) , frozenset(needed_assignments)))
 
+            ## Here we determine what the guard would be for this possiblity
             new_guard = evaluate_guard(edge.guard, possibility)
             edge_merged = False
+            ## We then merge any edges with guards that become the same
             for e in new_edges:
                 if fold_constants(new_guard) == fold_constants(e.guard):
                     edge_merged = True
@@ -135,8 +137,11 @@ def evaluate_edges(edge_set, removable_vars_evaluated, cannot_remove_set):
             if not edge_merged:
                 new_edge = momba_model.Edge(edge.location, frozenset(new_destinations), edge.action_pattern, new_guard, edge.rate, edge.annotation, edge.observation)
                 new_edges.add(new_edge)
+    
+    # We then make sure that the edges all get merged properly with the removed variables.
     return merge_edges(new_edges, cannot_remove_set)
 
+## Swap in known variable values in the guard
 def evaluate_guard(guard, removable_vars_evaluated, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECASE)):
     string_guard = str(guard)
     for var in removable_vars_evaluated.var_values:
@@ -154,7 +159,6 @@ def merge_destinations(destinations1, destinations2):
         merged = False
         for i, dest1 in enumerate(destinations1):
             if dest1.assignments == dest2.assignments:
-                #print(f"Probabilities {dest1.probability}, {dest2.probability}")
                 destinations1[i] = momba_model.Destination(dest1.location, ArithmeticBinary(ArithmeticBinaryOperator.ADD, dest1.probability, dest2.probability) , dest1.assignments)
                 merged = True
                 break

@@ -6,8 +6,14 @@ from momba.model.operators import ArithmeticBinaryOperator
 
 
 class VariableState:
+    """
+    This class is used to keep track of information about a particular set of
+    variable possibilities.
+    """
 
     def __init__(self, var_values, probability=IntegerConstant(integer=1), guard=None):
+        # If a VariableState object is passed, make a copy of it, but not referencing the original value
+        # dictionary
         if isinstance(var_values, VariableState):
             var_state = var_values
             self.var_values = dict(var_state.var_values)
@@ -20,6 +26,7 @@ class VariableState:
             self.guard = guard
         
 
+    # Take the current probability of this set of values and multiply it by a new probability
     def compound_probability(self, prob):
         if self.probability == IntegerConstant(integer=1) or self.probability == None:
             self.probability = prob
@@ -28,39 +35,44 @@ class VariableState:
         else:
             self.probability = ArithmeticBinary(ArithmeticBinaryOperator.MUL, self.probability, prob)
 
+    
+
+    ## Returns true if all variables have a value that does not include other variables
+    def completely_resolved(self):
+        for var in self.var_values:
+            if not self.is_fully_evaluated(self.var_values[var]):
+                return False
+
+        return True
+
+    ## This determines if an expressions still contains unresolved variables or not
+    def is_fully_evaluated(self, expression):
+        if len(expression.used_names) > 0:
+            return False
+
+        return True
+
+    # Returns the set of variable that haven't been completely resolved
+    def cannot_resolve_set(self):
+        cannot_resolve = set()
+        for var in self.var_values:
+            if not self.is_fully_evaluated(var, self.var_values[var]):
+                cannot_resolve.add(var)
+
+        return cannot_resolve
+
+    # This would simply and the old and new guard. I used this in an old implementation,
+    # still not sure if it will be needed in the final version
     def conjuct_guard(self, guard):
         if self.guard == None:
             self.guard = guard
         else:   
             self.guard = ArithmeticBinary(BooleanOperator.AND, guard, self.guard)
 
-    ## Needs to be updated to work with guards
-    def completely_resolved(self):
-        for var in self.var_values:
-            if not self.is_fully_evaluated(var, self.var_values[var]):
-                return False
-
-        return True
-
-    ## This needs to be updated to work with the guard variables as well
-    def is_fully_evaluated(self, target, expression):
-        if len(expression.used_names) > 0:
-            return False
-
-        return True
-
-    #This needs to be updated for a guard
-    def cannot_resolve_set(self):
-        no_resolve_set = set()
-        for var in self.var_values:
-            if not self.is_fully_evaluated(var, self.var_values[var]):
-                no_resolve_set.add(var)
-
-        return no_resolve_set
 
     def remove_var(self, var):
         self.var_values.pop(var, None)
-
+    
     def is_in(self, var):
         return var in self.var_values
 
