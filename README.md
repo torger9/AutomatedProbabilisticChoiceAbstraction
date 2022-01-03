@@ -17,7 +17,7 @@ This script can only convert models in the JANI format. To convert a modest file
 It may be useful to visualize the automata before and after conversion in order to determine if the conversion worked. Use the following command to generate a PNG file for a particular JANI model:
 `/path/to/modest/executable/ mosta MODEL_PATH.jani --dot png IMAGE_PATH.png -O IMAGE_PATH.png`
 
-Generating an image for both the original and abstracted model can help visualize the result of using the tool. 
+Generating an image for both the original and abstracted model can help visualize the result of using the tool. Some images have already been generated and placed into `automataImages`. These images correspond to the JANI files of the same name. They can be recreated when testing the tool.
 
 ## Testing
 
