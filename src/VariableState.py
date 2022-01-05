@@ -56,7 +56,7 @@ class VariableState:
     def cannot_resolve_set(self):
         cannot_resolve = set()
         for var in self.var_values:
-            if not self.is_fully_evaluated(var, self.var_values[var]):
+            if not self.is_fully_evaluated(self.var_values[var]):
                 cannot_resolve.add(var)
 
         return cannot_resolve

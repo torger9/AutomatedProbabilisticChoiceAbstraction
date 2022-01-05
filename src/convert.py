@@ -51,8 +51,11 @@ for init_state in model.initial_locations:
 # Get the necessary info about the model
 back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state)
 
+
 ## other_vars is the set of variables that aren't target or other important vars
-other_vars = all_vars.difference_update(target_vars + important_vars)
+all_vars.difference_update(target_vars + important_vars)
+other_vars = all_vars
+
 
 # This dictionary maps a target location to the distribution of 
 # variable values at that particular location
