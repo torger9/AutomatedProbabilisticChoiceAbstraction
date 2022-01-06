@@ -7,6 +7,9 @@ from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
 
+from guppy import hpy
+h = hpy()
+
 def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
@@ -59,10 +62,12 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                     backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
                     location_value_map[dest.name] = backwards_vals
                     #print(backwards_vals)
-                    print(f"{len(location_value_map)}/77 locations solved")
+                    #print(f"{len(location_value_map)}/77 locations solved")
+                    #if len(location_value_map) > 42:
+                    #    print(h.heap())
 
                 # For each possible set of variable values
-                for val in backwards_vals:            
+                for val in backwards_vals:        
                     var_state = VariableState(val)
 
 
@@ -76,6 +81,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                         var_state.var_values = substitute_vals(var_state.var_values, destination)
                         var_state.compound_probability(destination.probability)
                         final_vals.extend([var_state])
+                del backwards_vals
                         
                     
             # Used to skip remaining edges
@@ -90,7 +96,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
 
 
 def substitute_vals(var_values, destination):
-    new_var_values = dict(var_values)
+    new_var_values = var_values
     for var in new_var_values:
         new_var_values[var] = replace_values(new_var_values[var], destination.assignments)
     return new_var_values
