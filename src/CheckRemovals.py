@@ -7,7 +7,7 @@ from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
 
-def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location):
+def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -16,7 +16,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
     # This would represent a case where both edges can result in reaching the location, and the guards
     # and probabilities are not mutually exclusive, which is what this function currently assumes.
     # It could be tricky to fix this, so it hasn't been attempted yet.
-
+    
 
     if location in visited:
         # The incoming state is the default value of the variables.
@@ -49,11 +49,17 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                     # if they all go back to the target location instead of just one edge doing it.
                     skip_edges = True
                     continue
-                
-                # Recurse down each path all the way first before doing the evaluations.
-                # This allows the current variable values to be accesible when evaluating the proper
-                # guards that should be considered true
-                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location)
+
+                if dest.name in location_value_map:
+                    backwards_vals = location_value_map[dest.name]
+                else:
+                    # Recurse down each path all the way first before doing the evaluations.
+                    # This allows the current variable values to be accesible when evaluating the proper
+                    # guards that should be considered true
+                    backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
+                    location_value_map[dest.name] = backwards_vals
+                    #print(backwards_vals)
+                    #print(f"{len(location_value_map)}/77 locations solved")
 
                 # For each possible set of variable values
                 for val in backwards_vals:            
@@ -66,7 +72,6 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                     # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
                     # value of the guard. So they will all be considered true, which is faulty behavior at this point 
                     if check_guard(var_state.var_values, edge.guard):
-
                         # Apply this set of assignments to the variable values, along with the proper probability update
                         var_state.var_values = substitute_vals(var_state.var_values, destination)
                         var_state.compound_probability(destination.probability)
@@ -97,7 +102,7 @@ def substitute_vals(var_values, destination, swap_pattern=re.compile(r":[^:]*>,"
             temp = temp.replace(str(assignment.target), str(assignment.value))
             temp = swap_pattern.sub(",", temp)
             temp = temp.replace('<', '')
-            new_var_values[var] = eval(temp)  
+            new_var_values[var] = eval(temp)
     return new_var_values
 
 def check_guard(values, guard, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECASE)):

@@ -54,6 +54,7 @@ def model_info(model, target_vars, initial_state):
                 if dest not in visited:
                     location_queue.append(dest)
                     visited.add(dest)
+    print(f"{len(visited)} total locations")                
 
     return back_edges, target_locations, all_vars
 

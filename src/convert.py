@@ -1,6 +1,5 @@
 
 
-from typing import final
 from momba import jani
 from momba import model as momba_model
 import sys
@@ -27,7 +26,7 @@ network = None
 model = None
 
 # TODO: Make it so the target/important variables can be chosen by the user instead of hardcoded
-target_vars = [momba_model.expressions.Name('z')]
+target_vars = [momba_model.expressions.Name('optimalRuns')]
 important_vars = [momba_model.expressions.Name('clk')]
 
 ## Load the automatan from the jani file
@@ -61,7 +60,7 @@ other_vars = all_vars
 # variable values at that particular location
 final_vals_map = dict()
 
-
+cannot_remove_set = set()
 for target in target_locs:
     
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
@@ -82,17 +81,16 @@ for target in target_locs:
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
-    final_vals = evaluate_possibilities(target, back_edges, var_values, set(), initial_state, target) 
+    location_value_map = dict()
+    final_vals = evaluate_possibilities(target, back_edges, var_values, set(), initial_state, target, location_value_map) 
 
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
-    cannot_remove_set = set()
+
     for val in final_vals:
         cannot_remove_set.update(val.cannot_resolve_set())
     
-    for var in cannot_remove_set:
-        for val in final_vals:
-            val.remove_var(var)
+    
 
 
     # Store this set of possibilities
@@ -101,6 +99,11 @@ for target in target_locs:
 
 cannot_remove_set.update(target_vars)
 cannot_remove_set.update(important_vars)
+
+for target in final_vals_map:
+    for var in cannot_remove_set:
+            for val in final_vals_map[target]:
+                val.remove_var(var)
 
  
 ## Do the setup for creating a new model
