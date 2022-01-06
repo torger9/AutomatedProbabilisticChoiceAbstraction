@@ -59,7 +59,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                     backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
                     location_value_map[dest.name] = backwards_vals
                     #print(backwards_vals)
-                    #print(f"{len(location_value_map)}/77 locations solved")
+                    print(f"{len(location_value_map)}/77 locations solved")
 
                 # For each possible set of variable values
                 for val in backwards_vals:            
@@ -92,30 +92,15 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
 ## TODO: eval is a bad function to use, but it is needed here because I have to do string manipulation
 ## and then get it back to the momba datatype. If there is another way, that'd be great. For now, user input shouldn't
 ## be able to make it into the eval function in any way, so it may be safe.
-def substitute_vals(var_values, destination, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECASE)):
+def substitute_vals(var_values, destination):
     new_var_values = dict(var_values)
-    for assignment in destination.assignments:
-        for var in new_var_values:
-            temp = str(new_var_values[var])
-            # When the conversion to string occurs, some extra stuff is added that doesn't
-            # let it convert back into the proper datatype, so we have to remove it
-            temp = temp.replace(str(assignment.target), str(assignment.value))
-            temp = swap_pattern.sub(",", temp)
-            temp = temp.replace('<', '')
-            new_var_values[var] = eval(temp)
+    for var in new_var_values:
+        new_var_values[var] = replace_values(new_var_values[var], destination.assignments)
     return new_var_values
 
-def check_guard(values, guard, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECASE)):
-    guard = str(guard)
+def check_guard(values, guard):
 
-    # Swap out variables used in the guard for the values we know they are at this point
-    for var in values:
-        value = str(values[var])
-        guard = guard.replace(str(var), str(value))
-        guard = swap_pattern.sub(",", guard)
-        guard = guard.replace('<', '')
-    guard = eval(guard)
-
+    guard = replace_values_guard(guard, values)
 
     # TODO: fold_constants needs to handle all different types of expressions, currently it only does some
     evaluated_guard = fold_constants(guard)
@@ -125,6 +110,29 @@ def check_guard(values, guard, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECAS
         return False
     else:   
         return True
+
+def replace_values(expression, assignments): 
+    
+    if hasattr(expression, 'left'):
+        return type(expression)(operator=expression.operator, left=replace_values(expression.left, assignments), right=replace_values(expression.right, assignments)) 
+    else:
+        for assignment in assignments:
+            if expression == assignment.target:
+                return assignment.value
+        return expression
+
+def replace_values_guard(expression, assignments):
+
+    if hasattr(expression, 'left'):
+        return type(expression)(operator=expression.operator, left=replace_values_guard(expression.left, assignments), right=replace_values_guard(expression.right, assignments)) 
+    else:
+        if expression in assignments:
+            return assignments[expression]
+        return expression
+    
+
+
+
 
 
 

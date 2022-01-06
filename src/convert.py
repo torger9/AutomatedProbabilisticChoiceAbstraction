@@ -76,12 +76,11 @@ for target in target_locs:
     for var in other_vars:
         var_values[var] = var
 
-    # Create the object to keep track of the variable states
-    var_state = VariableState(var_values, 1, None)
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
     location_value_map = dict()
+    print("Evaluating possibilities")
     final_vals = evaluate_possibilities(target, back_edges, var_values, set(), initial_state, target, location_value_map) 
 
     ## Any variables that we can't fully resolve (for any of the possiblities)
