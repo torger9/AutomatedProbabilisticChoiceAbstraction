@@ -141,6 +141,7 @@ def evaluate_edges(edge_set, removable_vars_evaluated, cannot_remove_set):
     # We then make sure that the edges all get merged properly with the removed variables.
     return merge_edges(new_edges, cannot_remove_set)
 
+## TODO: Remove eval here using the method from CheckRemoval.py
 ## Swap in known variable values in the guard
 def evaluate_guard(guard, removable_vars_evaluated, swap_pattern=re.compile(r":[^:]*>,", re.IGNORECASE)):
     string_guard = str(guard)

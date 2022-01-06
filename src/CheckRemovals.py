@@ -89,9 +89,6 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
         return [incoming_state]
 
 
-## TODO: eval is a bad function to use, but it is needed here because I have to do string manipulation
-## and then get it back to the momba datatype. If there is another way, that'd be great. For now, user input shouldn't
-## be able to make it into the eval function in any way, so it may be safe.
 def substitute_vals(var_values, destination):
     new_var_values = dict(var_values)
     for var in new_var_values:
