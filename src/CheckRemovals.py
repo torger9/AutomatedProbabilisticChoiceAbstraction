@@ -35,59 +35,50 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
         i = 0
         for edge in back_edges[location]: 
 
-            skip_edges = False
-            for destination in edge.destinations:      
-                dest = edge.location
+            dest = edge.location
 
-                # TODO: For now we skip edges that go back to the initial state as they tend
-                # to be duplicates of other existing edges. 
-                if dest == initial_state:
-                    continue
-                
-                # Currently edges back to the target location are skipped because these are the 
-                # edges for which we are trying to determine the var values in the first place
-                if dest == target_location:
-                    final_vals.extend([incoming_state])
-                    ## TODO: Made the assumption to skip other edges here, this only holds 
-                    # if they all go back to the target location instead of just one edge doing it.
-                    skip_edges = True
-                    continue
+            # TODO: For now we skip edges that go back to the initial state as they tend
+            # to be duplicates of other existing edges. 
+            if dest == initial_state:
+                continue
+            
+            # Currently edges back to the target location are skipped because these are the 
+            # edges for which we are trying to determine the var values in the first place
+            if dest == target_location:
+                final_vals.extend([incoming_state])
+                ## TODO: Made the assumption to skip other edges here, this only holds 
+                # if they all go back to the target location instead of just one edge doing it.
+                break
 
-                if dest.name in location_value_map:
-                    backwards_vals = location_value_map[dest.name]
-                else:
-                    # Recurse down each path all the way first before doing the evaluations.
-                    # This allows the current variable values to be accesible when evaluating the proper
-                    # guards that should be considered true
-                    backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
-                    location_value_map[dest.name] = backwards_vals
-                    #print(backwards_vals)
-                    #print(f"{len(location_value_map)}/77 locations solved")
-                    #if len(location_value_map) > 42:
-                    #    print(h.heap())
+            if dest.name in location_value_map:
+                backwards_vals = location_value_map[dest.name]
+            else:
+                # Recurse down each path all the way first before doing the evaluations.
+                # This allows the current variable values to be accesible when evaluating the proper
+                # guards that should be considered true
+                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
+                location_value_map[dest.name] = backwards_vals
+                #print(backwards_vals)
+                print(f"{len(location_value_map)}/77 locations solved")
+                if len(location_value_map) > 42:
+                    print(h.heap())
+            
 
-                # For each possible set of variable values
-                for val in backwards_vals:        
-                    var_state = VariableState(val)
-
-
-                    ## TODO: This check guard function doesn't work in a lot of cases:
-                    # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
-                    # resulting in possilby multiple guards being considered as true when in reality only one can
-                    # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
-                    # value of the guard. So they will all be considered true, which is faulty behavior at this point 
-                    if check_guard(var_state.var_values, edge.guard):
+            # For each possible set of variable values
+            for val in backwards_vals:        
+                ## TODO: This check guard function doesn't work in a lot of cases:
+                # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
+                # resulting in possilby multiple guards being considered as true when in reality only one can
+                # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
+                # value of the guard. So they will all be considered true, which is faulty behavior at this point 
+                if check_guard(val.var_values, edge.guard):
+                    for destination in edge.destinations:
+                        var_state = VariableState(val)
                         # Apply this set of assignments to the variable values, along with the proper probability update
                         var_state.var_values = substitute_vals(var_state.var_values, destination)
                         var_state.compound_probability(destination.probability)
                         final_vals.extend([var_state])
-                del backwards_vals
-                        
-                    
-            # Used to skip remaining edges
-            if skip_edges:
-                break
-
+            del backwards_vals
         return final_vals
 
     else:

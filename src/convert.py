@@ -26,7 +26,7 @@ network = None
 model = None
 
 # TODO: Make it so the target/important variables can be chosen by the user instead of hardcoded
-target_vars = [momba_model.expressions.Name('optimalRuns')]
+target_vars = [momba_model.expressions.Name('z')]
 important_vars = [momba_model.expressions.Name('clk')]
 
 ## Load the automatan from the jani file
@@ -61,8 +61,8 @@ other_vars = all_vars
 final_vals_map = dict()
 
 cannot_remove_set = set()
-for target in target_locs:
-    
+for i, target in enumerate(target_locs):
+
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
     # it to better determine which variables can actually be removed. For now it isn't used the way
     # I have currently written the code.
@@ -80,9 +80,9 @@ for target in target_locs:
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
     location_value_map = dict()
-    print("Evaluating possibilities")
+    #print("Evaluating possibilities")
     final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map) 
-
+    print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
 
