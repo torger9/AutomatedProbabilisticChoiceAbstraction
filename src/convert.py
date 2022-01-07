@@ -26,7 +26,7 @@ network = None
 model = None
 
 # TODO: Make it so the target/important variables can be chosen by the user instead of hardcoded
-target_vars = [momba_model.expressions.Name('z')]
+target_vars = [momba_model.expressions.Name('optimalRuns')]
 important_vars = [momba_model.expressions.Name('clk')]
 
 ## Load the automatan from the jani file
@@ -62,7 +62,7 @@ final_vals_map = dict()
 
 cannot_remove_set = set()
 for i, target in enumerate(target_locs):
-
+    print(f"{i} of {len(target_locs)}")
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
     # it to better determine which variables can actually be removed. For now it isn't used the way
     # I have currently written the code.

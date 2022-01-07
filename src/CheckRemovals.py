@@ -60,8 +60,8 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 location_value_map[dest.name] = backwards_vals
                 #print(backwards_vals)
                 print(f"{len(location_value_map)}/77 locations solved")
-                if len(location_value_map) > 42:
-                    print(h.heap())
+                #if len(location_value_map) > 42:
+                #    print(h.heap())
             
 
             # For each possible set of variable values
@@ -88,8 +88,11 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
 
 def substitute_vals(var_values, destination):
     new_var_values = var_values
-    for var in new_var_values:
-        new_var_values[var] = replace_values(new_var_values[var], destination.assignments)
+    old_values = dict()
+    for assignment in destination.assignments:
+        if assignment.target in new_var_values:
+            old_values[assignment.target] = var_values[assignment.target]
+            new_var_values[assignment.target] = replace_values(assignment.value, old_values, var_values)
     return new_var_values
 
 def check_guard(values, guard):
@@ -105,14 +108,15 @@ def check_guard(values, guard):
     else:   
         return True
 
-def replace_values(expression, assignments): 
+def replace_values(expression, old_values, var_values): 
     
     if hasattr(expression, 'left'):
-        return type(expression)(operator=expression.operator, left=replace_values(expression.left, assignments), right=replace_values(expression.right, assignments)) 
+        return type(expression)(operator=expression.operator, left=replace_values(expression.left, old_values, var_values), right=replace_values(expression.right, old_values, var_values)) 
     else:
-        for assignment in assignments:
-            if expression == assignment.target:
-                return assignment.value
+        if expression in old_values:
+            return old_values[expression]
+        elif expression in var_values:
+            return var_values[expression]
         return expression
 
 def replace_values_guard(expression, assignments):
