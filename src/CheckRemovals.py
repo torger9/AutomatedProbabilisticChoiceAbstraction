@@ -7,8 +7,8 @@ from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
 
-from guppy import hpy
-h = hpy()
+#from guppy import hpy
+#h = hpy()
 
 def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):
     """
