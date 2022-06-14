@@ -2,6 +2,7 @@ import sys
 import re
 from NewModel import evaluate_edges
 from foldConstants import fold_constants
+from BackwardTraversal import  backward_traversal
 from momba import model as momba_model
 from momba.model.expressions import *
 from momba.model.operators import *
@@ -10,7 +11,26 @@ from VariableState import VariableState
 #from guppy import hpy
 #h = hpy()
 
-def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):
+def evaluate_possibilities(initial_location, target_location, location_value_map):
+    #TODO: update call of this function in the main code
+
+    path_to_target = list()
+    visited = set()
+    
+    #outer loop finds each path of locations from initial to target location
+    path_to_target, visited = backward_traversal(model, path_to_target, visited, initial_location, target_location)
+    for (path_to_target != None):
+        #function returns a tuple containing a path and visited set, returns none if all paths are found
+        path_to_target, visited = backward_traversal(model, path_to_target, visited, initial_location, target_location)
+        
+        #inner loop finds each subpath within the list of locations
+        for (False):
+            #TODO: find each subpath
+            #TODO: follow subpath and accumulate vals and probs
+            pass
+        
+        
+#def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):   
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -21,69 +41,69 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
     # It could be tricky to fix this, so it hasn't been attempted yet.
     
 
-    if location in visited:
-        # The incoming state is the default value of the variables.
-        # We recurse backwards through the edges until we hit locations we have already seen.
-        # Then we start with the incoming state and build the variable values as the recursion is unwound
-        return [incoming_state]
-    else:
-        new_visited = set(visited)
-        new_visited.add(location)
+    # if location in visited:
+        # # The incoming state is the default value of the variables.
+        # # We recurse backwards through the edges until we hit locations we have already seen.
+        # # Then we start with the incoming state and build the variable values as the recursion is unwound
+        # return [incoming_state]
+    # else:
+        # new_visited = set(visited)
+        # new_visited.add(location)
 
-    if location in back_edges:
-        final_vals = list()
-        i = 0
-        for edge in back_edges[location]: 
+    # if location in back_edges:
+        # final_vals = list()
+        # i = 0
+        # for edge in back_edges[location]: 
 
-            dest = edge.location
+            # dest = edge.location
 
-            # TODO: For now we skip edges that go back to the initial state as they tend
-            # to be duplicates of other existing edges. 
-            if dest == initial_state:
-                continue
+            # # TODO: For now we skip edges that go back to the initial state as they tend
+            # # to be duplicates of other existing edges. 
+            # if dest == initial_state:
+                # continue
             
-            # Currently edges back to the target location are skipped because these are the 
-            # edges for which we are trying to determine the var values in the first place
-            if dest == target_location:
-                final_vals.extend([incoming_state])
-                ## TODO: Made the assumption to skip other edges here, this only holds 
-                # if they all go back to the target location instead of just one edge doing it.
-                break
+            # # Currently edges back to the target location are skipped because these are the 
+            # # edges for which we are trying to determine the var values in the first place
+            # if dest == target_location:
+                # final_vals.extend([incoming_state])
+                # ## TODO: Made the assumption to skip other edges here, this only holds 
+                # # if they all go back to the target location instead of just one edge doing it.
+                # break
 
-            if dest.name in location_value_map:
-                backwards_vals = location_value_map[dest.name]
-            else:
-                # Recurse down each path all the way first before doing the evaluations.
-                # This allows the current variable values to be accesible when evaluating the proper
-                # guards that should be considered true
-                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
-                location_value_map[dest.name] = backwards_vals
-                #print(backwards_vals)
-                print(f"{len(location_value_map)}/77 locations solved")
-                #if len(location_value_map) > 42:
-                #    print(h.heap())
+            # if dest.name in location_value_map:
+                # backwards_vals = location_value_map[dest.name]
+            # else:
+                # # Recurse down each path all the way first before doing the evaluations.
+                # # This allows the current variable values to be accesible when evaluating the proper
+                # # guards that should be considered true
+                # backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
+                # location_value_map[dest.name] = backwards_vals
+                # #print(backwards_vals)
+                # print(f"{len(location_value_map)}/77 locations solved")
+                # #if len(location_value_map) > 42:
+                # #    print(h.heap())
             
 
-            # For each possible set of variable values
-            for val in backwards_vals:        
-                ## TODO: This check guard function doesn't work in a lot of cases:
-                # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
-                # resulting in possilby multiple guards being considered as true when in reality only one can
-                # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
-                # value of the guard. So they will all be considered true, which is faulty behavior at this point 
-                if check_guard(val.var_values, edge.guard):
-                    for destination in edge.destinations:
-                        var_state = VariableState(val)
-                        # Apply this set of assignments to the variable values, along with the proper probability update
-                        var_state.var_values = substitute_vals(var_state.var_values, destination)
-                        var_state.compound_probability(destination.probability)
-                        final_vals.extend([var_state])
-            del backwards_vals
-        return final_vals
+            # # For each possible set of variable values
+            # for val in backwards_vals:        
+                # ## TODO: This check guard function doesn't work in a lot of cases:
+                # # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
+                # # resulting in possilby multiple guards being considered as true when in reality only one can
+                # # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
+                # # value of the guard. So they will all be considered true, which is faulty behavior at this point 
+                # if check_guard(val.var_values, edge.guard):
+                    # for destination in edge.destinations:
+                        # var_state = VariableState(val)
+                        # # Apply this set of assignments to the variable values, along with the proper probability update
+                        # var_state.var_values = substitute_vals(var_state.var_values, destination)
+                        # var_state.compound_probability(destination.probability)
+                        # final_vals.extend([var_state])
+            # del backwards_vals
+        
 
-    else:
-        # There are no backward edges, must be a base location
-        return [incoming_state]
+    # else:
+        # # There are no backward edges, must be a base location
+        # return [incoming_state]
 
 
 def substitute_vals(var_values, destination):
