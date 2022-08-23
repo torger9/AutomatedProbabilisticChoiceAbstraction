@@ -100,6 +100,10 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
                 # value of the guard. So they will all be considered true, which is faulty behavior at this point 
                 if check_guard(val.var_values, edge.guard):
+
+                    print(repr(edge.guard))
+                    workfile.write(repr(edge.guard))
+
                     for destination in edge.destinations:
                         var_state = VariableState(val)
                         # Apply this set of assignments to the variable values, along with the proper probability update
