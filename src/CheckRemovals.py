@@ -6,11 +6,12 @@ from momba import model as momba_model
 from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
+from TotalSize import total_size
 
-#from guppy import hpy
-#h = hpy()
+from guppy import hpy
+h = hpy()
 
-def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map):
+def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map, depth, workfile):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -20,6 +21,23 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
     # and probabilities are not mutually exclusive, which is what this function currently assumes.
     # It could be tricky to fix this, so it hasn't been attempted yet.
     
+    # Print utilization for optimization
+    # Occurs at the beginning and end of each recursion
+    # See code block following recursive call 
+
+    print(f'\tRecursion depth {depth}')
+    print(f'\t\tLocations solved: {len(location_value_map)}')
+#    print(f'\t\tHeap size: {h.heap()} bytes\n')
+    print(f'\t\tBackwards_vals: - bytes')
+    print(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes')
+    print(f'\t\tFinal_vals: - bytes')
+    workfile.write(f'\tRecursion depth {depth}\n')
+    workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+#    workfile.write(f'\t\tHeap size: {h.heap()} bytes\n\n')
+    workfile.write(f'\t\tBackwards_vals: - bytes\n')
+    workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
+    workfile.write(f'\t\tFinal_vals: - bytes\n\n')
+   
 
     if location in visited:
         # The incoming state is the default value of the variables.
@@ -56,13 +74,23 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 # Recurse down each path all the way first before doing the evaluations.
                 # This allows the current variable values to be accesible when evaluating the proper
                 # guards that should be considered true
-                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
+                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, (depth+1), workfile)
                 location_value_map[dest.name] = backwards_vals
                 #print(backwards_vals)
-                print(f"{len(location_value_map)}/77 locations solved")
-                #if len(location_value_map) > 42:
-                #    print(h.heap())
-            
+
+                print(f'\tRecursion depth {depth}')
+                print(f'\t\tLocations solved: {len(location_value_map)}')
+#                print(f'\t\tHeap size: {h.heap()} bytes\n')
+                print(f'\t\tBackwards_vals: {total_size(backwards_vals)} bytes')
+                print(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes')
+                print(f'\t\tFinal_vals: {total_size(final_vals)} bytes')
+                workfile.write(f'\tRecursion depth {depth}\n')
+                workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+#                workfile.write(f'\t\tHeap size: {h.heap()} bytes\n\n')
+                workfile.write(f'\t\tBackwards_vals: {total_size(backwards_vals)} bytes\n')
+                workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
+                workfile.write(f'\t\tFinal_vals: {total_size(final_vals)} bytes\n\n')
+ 
 
             # For each possible set of variable values
             for val in backwards_vals:        

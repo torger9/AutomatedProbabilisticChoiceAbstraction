@@ -1,3 +1,5 @@
+from TotalSize import total_size
+
 def model_info(model, target_vars, initial_state, workfile):
     """ 
     This function walks through the model to identify three collections:
@@ -7,8 +9,8 @@ def model_info(model, target_vars, initial_state, workfile):
     3. The set of all variables used in the automata
     """
     # Notify console process is beginning
-    print("\nCollecting model info")
-    workfile.write("\nCollecting model info")
+    print("Collecting model info...")
+    workfile.write("Collecting model info...\n")
 
     # Initialize what we are looking for
     back_edges = dict()
@@ -24,8 +26,8 @@ def model_info(model, target_vars, initial_state, workfile):
     # BFS
     while len(location_queue) > 0:
         curr_location = location_queue.pop()
-        workfile.write(f"{Exploring location {len(visited)-len(location_queue)}")
-        print(f"{Exploring location {len(visited)-len(location_queue)}")
+        workfile.write(f"\tExploring location {len(visited)-len(location_queue)}\n")
+        print(f"\tExploring location {len(visited)-len(location_queue)}")
 
         # Each location has a set of outgoing edges
         # Each edge can have multiple destinations, where the destination is chosen probabilistically
@@ -58,8 +60,18 @@ def model_info(model, target_vars, initial_state, workfile):
                 if dest not in visited:
                     location_queue.append(dest)
                     visited.add(dest)
-    print(f"{len(visited)} total locations")                
-    workfile.write(f"{len(visited)} total locations")                
+
+    print(f"\t{len(visited)} total locations\n")                
+    print(f"\tTarget locations: {len(target_locations)}\n\t\t{total_size(target_locations)} bytes")
+    print(f"\tBack edges: {len(back_edges)}\n\t\t{total_size(back_edges)} bytes")
+    print(f"\tAll vars: {len(all_vars)}\n\t\t{total_size(all_vars)} bytes\n")
+    workfile.write(f"\t{len(visited)} total locations\n\n")                
+    workfile.write(f"\tTarget locations: {len(target_locations)}\n\t\t{total_size(target_locations)} bytes\n")
+    workfile.write(f"\tBack edges: {len(back_edges)}\n\t\t{total_size(back_edges)} bytes\n")
+    workfile.write(f"\tAll vars: {len(all_vars)}\n\t\t{total_size(all_vars)} bytes\n\n")
+    
+    print("\tModel info collected\n")
+    workfile.write("\tModel info collected\n\n")
 
     return back_edges, target_locations, all_vars
 

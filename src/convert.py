@@ -7,36 +7,48 @@ from Dependancies import get_location_dependancies
 from CheckRemovals import evaluate_possibilities
 from VariableState import VariableState
 from NewModel import make_new_model
+from TotalSize import total_size
 
 # Open workfile
 workfile = open( 'workfile.txt', 'w', encoding = 'utf-8')
 
 # Desigate paramaters interactively or from initial call
-interactive_mode = True
+interactive_mode = (sys.argv[1] == '-i')
 
 # Function prints proper call of convert.py to screen
-# TODO: add option for non-interactive mode
 def usage(interactive_mode):
-    if interactive_mode:
-        print("Usage:")
-        print("python convert.py /path/to/original/jani/file /path/for/converted/jani")
-        workfile.write("Usage:")
-        workfile.write("python convert.py /path/to/original/jani/file /path/for/converted/jani")
+    print("\tUsage:")
+    print("\tpython convert.py [-i] /path/to/original/jani/file /path/for/converted/jani")
+    workfile.write("\tUsage:")
+    workfile.write("\tpython convert.py [-i] /path/to/original/jani/file /path/for/converted/jani")
 
 # Enforces proper call of convert.py
-if len(sys.argv) < 3:
-    print("You did not provide the proper number of file names")
-    workfile.write("You did not provide the proper number of file names")
-    usage(interactive_mode)
-    sys.exit(1)
+if interactive_mode:
+    if len(sys.argv) < 4:
+        print("\tYou did not provide the proper number of file names")
+        workfile.write("\tYou did not provide the proper number of file names")
+        usage(interactive_mode)
+        sys.exit(1)
+else:
+    if len(sys.argv) < 3:
+        print("\tYou did not provide the proper number of file names")
+        workfile.write("\tYou did not provide the proper number of file names")
+        usage(interactive_mode)
+        sys.exit(1)
 
 
 ################################################################################
 # Initialize some variables
-print("Initializing")
-workfile.write("Initializing")
-original_file = sys.argv[1]
-new_file = sys.argv[2]
+if interactive_mode:
+    original_file = sys.argv[2]
+    new_file = sys.argv[3]
+    print("Initializing...\n\tReading from " + sys.argv[2] + "\n\tWriting to " + sys.argv[3] + "\n")
+    workfile.write("Initializing...\n\tReading from " + sys.argv[2] + "\n\tWriting to " + sys.argv[3] + "\n\n")
+else:
+    original_file = sys.argv[1]
+    new_file = sys.argv[2]
+    print("Initializing...\n\tReading from " + sys.argv[1] + "\n\tWriting to " + sys.argv[2] + "\n")
+    workfile.write("Initializing...\n\tReading from " + sys.argv[1] + "\n\tWriting to " + sys.argv[2] + "\n\n")
 
 network = None
 model = None
@@ -44,18 +56,28 @@ target_vars = list()
 important_vars = list()
 
 # Collect list of target and important varialbes
-# TODO: add option for non-interactive mode
-#target_vars = [momba_model.expressions.Name('optimalRuns')]
-#important_vars = [momba_model.expressions.Name('clk')
+# For interactive mode, variables are input at runtime
+# for non-interactive mode, hardcode variables in "else" below
 if interactive_mode:
-    check = (input("Add a target varialbe?: ").lower().startswith('y'))
+    check = (input("\tAdd a target varialbe?: ").lower().startswith('y'))
     while check:
-        target_vars.append(momba_model.expressions.Name(input("    name: ")))
-        check = (input("Add another varialbe?: ").lower().startswith('y'))
-    check = (input("Add an important varialbe?: ").lower().startswith('y'))
+        target_vars.append(momba_model.expressions.Name(input("\t    name: ")))
+        check = (input("\tAdd another varialbe?: ").lower().startswith('y'))
+    check = (input("\tAdd an important varialbe?: ").lower().startswith('y'))
     while check:
-        important_vars.append(momba_model.expressions.Name(input("    name: ")))
-        check = (input("Add another varialbe?: ").lower().startswith('y'))
+        important_vars.append(momba_model.expressions.Name(input("\t    name: ")))
+        check = (input("\tAdd another varialbe?: ").lower().startswith('y'))
+    print("")
+    workfile.write("\n")
+else: 
+    target_vars = [momba_model.expressions.Name('z')]
+    important_vars = [momba_model.expressions.Name('clk')]
+
+print(f'\tTarget variables: {target_vars}')
+workfile.write(f'\tTarget variables: {target_vars}\n')
+print(f'\tImportant variables: {important_vars}\n')
+workfile.write(f'\tImportant variables: {important_vars}\n\n')
+
 
 # Load the automatan from the jani file
 with open(original_file, encoding='utf-8-sig') as jani_file:
@@ -67,17 +89,19 @@ with open(original_file, encoding='utf-8-sig') as jani_file:
 # Enforce exisance of a single initial state
 # TODO: Can multiple initial states work at all?
 if (len(model.initial_locations) > 1):
-    print("Can't do multiple initial states yet")
-    workfile.write("Can't do multiple initial states yet")
+    print("\tCan't do multiple initial states yet")
+    workfile.write("\tCan't do multiple initial states yet\n")
     sys.exit(1)
 
 # Obtain initial state from model
 # To preserve model integrity, initial state should not be popped
 for init_state in model.initial_locations:
     initial_state = init_state 
+print(f'\tInitial state: {init_state}\n')
+workfile.write(f'\tInitial state: {init_state}\n\n')
 
-print("Initialization complete")
-workfile.write("Initialization complete")
+print("\tInitialization complete\n")
+workfile.write("\tInitialization complete\n\n")
 
 
 ################################################################################
@@ -95,7 +119,8 @@ final_vals_map = dict()
 
 cannot_remove_set = set()
 for i, target in enumerate(target_locs):
-    print(f"{i} of {len(target_locs)}")
+    print(f"Target location {i+1} of {len(target_locs)}")
+    workfile.write(f"Target location {i+1} of {len(target_locs)}\n")
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
     # it to better determine which variables can actually be removed. For now it isn't used the way
     # I have currently written the code.
@@ -113,9 +138,11 @@ for i, target in enumerate(target_locs):
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
     location_value_map = dict()
-    #print("Evaluating possibilities")
-    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map) 
-    print(final_vals)
+    print("Evaluating possibilities...")
+    workfile.write("Evaluating possibilities...\n")
+    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile)
+
+    #print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
 
