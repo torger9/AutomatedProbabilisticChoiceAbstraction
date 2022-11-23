@@ -1,0 +1,47 @@
+Initializing...
+	Reading from ../models/toy.jani
+	Writing to 08_23_22_01.jani
+
+	Target variables: [Name(identifier='z')]
+	Important variables: [Name(identifier='clk')]
+
+	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
+
+	Initialization complete
+
+Collecting model info...
+	Exploring location 1
+	Exploring location 2
+	Exploring location 3
+	3 total locations
+
+	Target locations: 1
+		264 bytes
+	Back edges: 2
+		1000 bytes
+	All vars: 4
+		664 bytes
+
+	Model info collected
+
+Target location 1 of 1
+Evaluating possibilities...
+	Recursion depth 0
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+	Recursion depth 1
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+	Recursion depth 0
+		Locations solved: 1
+		Backwards_vals: 136 bytes
+		Location_value_map: 432 bytes
+		Final_vals: 56 bytes
+
+		Boolean(operator=<BooleanOperator.AND: ('∧', <function BooleanOperator.<lambda> at 0x7f98779efe20>)>, left=Equality(operator=<EqualityOperator.NEQ: ('≠', <function EqualityOperator.<lambda> at 0x7f9877a20af0>)>, left=Name(identifier='clk'), right=IntegerConstant(integer=2)), right=Equality(operator=<EqualityOperator.NEQ: ('≠', <function EqualityOperator.<lambda> at 0x7f9877a20af0>)>, left=Name(identifier='clk'), right=IntegerConstant(integer=2)))

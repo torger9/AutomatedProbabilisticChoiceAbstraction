@@ -1,0 +1,1753 @@
+Initializing...
+	Reading from models/predicateAbstract.jani
+	Writing to loc_5.jani
+
+	Target variables: [Name(identifier='optimalRuns')]
+	Important variables: [Name(identifier='clk')]
+
+	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
+
+	Initialization complete
+
+Collecting model info...
+	Exploring location 1
+	Exploring location 2
+	Exploring location 3
+	Exploring location 4
+	Exploring location 5
+	Exploring location 6
+	Exploring location 7
+	Exploring location 8
+	Exploring location 9
+	Exploring location 10
+	Exploring location 11
+	Exploring location 12
+	Exploring location 13
+	Exploring location 14
+	Exploring location 15
+	Exploring location 16
+	Exploring location 17
+	Exploring location 18
+	Exploring location 19
+	Exploring location 20
+	Exploring location 21
+	Exploring location 22
+	Exploring location 23
+	Exploring location 24
+	Exploring location 25
+	Exploring location 26
+	Exploring location 27
+	Exploring location 28
+	Exploring location 29
+	Exploring location 30
+	Exploring location 31
+	Exploring location 32
+	Exploring location 33
+	Exploring location 34
+	Exploring location 35
+	Exploring location 36
+	Exploring location 37
+	Exploring location 38
+	Exploring location 39
+	Exploring location 40
+	Exploring location 41
+	Exploring location 42
+	Exploring location 43
+	Exploring location 44
+	Exploring location 45
+	Exploring location 46
+	Exploring location 47
+	Exploring location 48
+	Exploring location 49
+	Exploring location 50
+	Exploring location 51
+	Exploring location 52
+	Exploring location 53
+	Exploring location 54
+	Exploring location 55
+	Exploring location 56
+	Exploring location 57
+	Exploring location 58
+	Exploring location 59
+	Exploring location 60
+	Exploring location 61
+	Exploring location 62
+	Exploring location 63
+	Exploring location 64
+	Exploring location 65
+	Exploring location 66
+	Exploring location 67
+	Exploring location 68
+	Exploring location 69
+	Exploring location 70
+	Exploring location 71
+	Exploring location 72
+	Exploring location 73
+	Exploring location 74
+	Exploring location 75
+	Exploring location 76
+	Exploring location 77
+	77 total locations
+
+	Target locations: 8
+		1112 bytes
+	Back edges: 76
+		90896 bytes
+	All vars: 179
+		17000 bytes
+
+	Model info collected
+
+Target location 1 of 8
+Target location 2 of 8
+Target location 3 of 8
+Target location 4 of 8
+Target location 5 of 8
+Target location 6 of 8
+Target location 7 of 8
+Target location 8 of 8
+Evaluating possibilities...
+	Recursion depth 0
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 8 objects. Total size = 1619 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      2  25     1032  64      1032  64 types.FrameType
+     1      3  38      219  14      1251  77 str
+     2      1  12      216  13      1467  91 set
+     3      1  12      104   6      1571  97 dict of VariableState.VariableState
+     4      1  12       48   3      1619 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 9 objects. Total size = 2144 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0      3  33      896  42       896  42 types.FrameType
+     1      4  44      744  35      1640  76 list
+     2      1  11      400  19      2040  95 <Nothing>
+     3      1  11      104   5      2144 100 VariableState.VariableState
+
+		Heap summary: largest referrer Partition of a set of 5 objects. Total size = 1206 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      5 100     1206 100      1206 100 str 
+
+
+	Recursion depth 1
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 24 objects. Total size = 4645 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     10  42     1757  38      1757  38 str
+     1      3  12     1664  36      3421  74 types.FrameType
+     2      2   8      432   9      3853  83 set
+     3      1   4      232   5      4085  88 dict (no owner)
+     4      2   8      144   3      4229  91 builtins.weakref
+     5      1   4      144   3      4373  94 function
+     6      1   4      104   2      4477  96 dict of VariableState.VariableState
+     7      2   8       64   1      4541  98 int
+     8      1   4       56   1      4597  99 list
+     9      1   4       48   1      4645 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 25 objects. Total size = 5447 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     10  40     2493  46      2493  46 list
+     1      6  24     1800  33      4293  79 types.FrameType
+     2      1   4      400   7      4693  86 <Nothing>
+     3      1   4      232   4      4925  90 type
+     4      1   4      144   3      5069  93 dict of type
+     5      3  12      136   2      5205  96 dict (no owner)
+     6      1   4      104   2      5309  97 VariableState.VariableState
+     7      1   4       72   1      5381  99 set
+     8      1   4       66   1      5447 100 _io.TextIOWrapper
+
+		Heap summary: largest referrer Partition of a set of 11 objects. Total size = 3237 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     11 100     3237 100      3237 100 str 
+
+
+	Recursion depth 2
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 35 objects. Total size = 7719 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     17  49     3855  50      3855  50 str
+     1      4  11     2296  30      6151  80 types.FrameType
+     2      3   9      648   8      6799  88 set
+     3      1   3      232   3      7031  91 dict (no owner)
+     4      3   9      184   2      7215  93 list
+     5      2   6      144   2      7359  95 builtins.weakref
+     6      1   3      144   2      7503  97 function
+     7      1   3      104   1      7607  99 dict of VariableState.VariableState
+     8      2   6       64   1      7671  99 int
+     9      1   3       48   1      7719 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 36 objects. Total size = 8521 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     18  50     4657  55      4657  55 list
+     1      9  25     2704  32      7361  86 types.FrameType
+     2      1   3      400   5      7761  91 <Nothing>
+     3      1   3      232   3      7993  94 type
+     4      1   3      144   2      8137  95 dict of type
+     5      3   8      136   2      8273  97 dict (no owner)
+     6      1   3      104   1      8377  98 VariableState.VariableState
+     7      1   3       72   1      8449  99 _io.TextIOWrapper
+     8      1   3       72   1      8521 100 set
+
+		Heap summary: largest referrer Partition of a set of 19 objects. Total size = 5401 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     19 100     5401 100      5401 100 str 
+
+
+	Recursion depth 3
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 45 objects. Total size = 10769 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     24  53     5953  55      5953  55 str
+     1      5  11     2928  27      8881  82 types.FrameType
+     2      4   9      864   8      9745  90 set
+     3      4   9      288   3     10033  93 list
+     4      1   2      232   2     10265  95 dict (no owner)
+     5      2   4      144   1     10409  97 builtins.weakref
+     6      1   2      144   1     10553  98 function
+     7      1   2      104   1     10657  99 dict of VariableState.VariableState
+     8      2   4       64   1     10721 100 int
+     9      1   2       48   0     10769 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 46 objects. Total size = 11572 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     25  54     6756  58      6756  58 list
+     1     12  26     3608  31     10364  90 types.FrameType
+     2      1   2      400   3     10764  93 <Nothing>
+     3      1   2      232   2     10996  95 type
+     4      1   2      144   1     11140  96 dict of type
+     5      3   7      136   1     11276  97 dict (no owner)
+     6      1   2      120   1     11396  98 _io.TextIOWrapper
+     7      1   2      104   1     11500  99 VariableState.VariableState
+     8      1   2       72   1     11572 100 set
+
+		Heap summary: largest referrer Partition of a set of 12 objects. Total size = 3608 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      4  33     2528  70      2528  70 types.FrameType
+     1      4  33      864  24      3392  94 set
+     2      3  25      168   5      3560  99 list
+     3      1   8       48   1      3608 100 VariableState.VariableState 
+
+
+	Recursion depth 4
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 34 objects. Total size = 7519 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      6  18     3560  47      3560  47 types.FrameType
+     1      9  26     1679  22      5239  70 str
+     2      5  15     1080  14      6319  84 set
+     3      6  18      464   6      6783  90 list
+     4      1   3      232   3      7015  93 dict (no owner)
+     5      2   6      144   2      7159  95 builtins.weakref
+     6      1   3      144   2      7303  97 function
+     7      1   3      104   1      7407  99 dict of VariableState.VariableState
+     8      2   6       64   1      7471  99 int
+     9      1   3       48   1      7519 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 35 objects. Total size = 8321 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     15  43     4512  54      4512  54 types.FrameType
+     1     10  29     2481  30      6993  84 list
+     2      1   3      400   5      7393  89 <Nothing>
+     3      2   6      240   3      7633  92 _io.TextIOWrapper
+     4      1   3      232   3      7865  95 type
+     5      1   3      144   2      8009  96 dict of type
+     6      3   9      136   2      8145  98 dict (no owner)
+     7      1   3      104   1      8249  99 VariableState.VariableState
+     8      1   3       72   1      8321 100 set
+
+		Heap summary: largest referrer Partition of a set of 15 objects. Total size = 4512 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      5  33     3160  70      3160  70 types.FrameType
+     1      5  33     1080  24      4240  94 set
+     2      4  27      224   5      4464  99 list
+     3      1   7       48   1      4512 100 VariableState.VariableState 
+
+
+	Recursion depth 5
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 44 objects. Total size = 11281 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      7  16     4192  37      4192  37 types.FrameType
+     1     16  36     3961  35      8153  72 str
+     2      6  14     1808  16      9961  88 set
+     3      7  16      584   5     10545  93 list
+     4      1   2      232   2     10777  96 dict (no owner)
+     5      2   5      144   1     10921  97 builtins.weakref
+     6      1   2      144   1     11065  98 function
+     7      1   2      104   1     11169  99 dict of VariableState.VariableState
+     8      2   5       64   1     11233 100 int
+     9      1   2       48   0     11281 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 45 objects. Total size = 12084 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     18  40     5928  49      5928  49 types.FrameType
+     1     17  38     4764  39     10692  88 list
+     2      1   2      400   3     11092  92 <Nothing>
+     3      2   4      304   3     11396  94 _io.TextIOWrapper
+     4      1   2      232   2     11628  96 type
+     5      1   2      144   1     11772  97 dict of type
+     6      3   7      136   1     11908  99 dict (no owner)
+     7      1   2      104   1     12012  99 VariableState.VariableState
+     8      1   2       72   1     12084 100 set
+
+		Heap summary: largest referrer Partition of a set of 18 objects. Total size = 5928 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      6  33     3792  64      3792  64 types.FrameType
+     1      6  33     1808  30      5600  94 set
+     2      5  28      280   5      5880  99 list
+     3      1   6       48   1      5928 100 VariableState.VariableState 
+
+
+	Recursion depth 6
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 54 objects. Total size = 14789 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     23  43     6245  42      6245  42 str
+     1      8  15     4824  33     11069  75 types.FrameType
+     2      7  13     2280  15     13349  90 set
+     3      8  15      704   5     14053  95 list
+     4      1   2      232   2     14285  97 dict (no owner)
+     5      2   4      144   1     14429  98 builtins.weakref
+     6      1   2      144   1     14573  99 function
+     7      1   2      104   1     14677  99 dict of VariableState.VariableState
+     8      2   4       64   0     14741 100 int
+     9      1   2       48   0     14789 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 55 objects. Total size = 15592 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     21  38     7088  45      7088  45 types.FrameType
+     1     24  44     7048  45     14136  91 list
+     2      1   2      400   3     14536  93 <Nothing>
+     3      2   4      368   2     14904  96 _io.TextIOWrapper
+     4      1   2      232   1     15136  97 type
+     5      1   2      144   1     15280  98 dict of type
+     6      3   5      136   1     15416  99 dict (no owner)
+     7      1   2      104   1     15520 100 VariableState.VariableState
+     8      1   2       72   0     15592 100 set
+
+		Heap summary: largest referrer Partition of a set of 25 objects. Total size = 7793 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     25 100     7793 100      7793 100 str 
+
+
+	Recursion depth 7
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 64 objects. Total size = 18113 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     30  47     8345  46      8345  46 str
+     1      9  14     5456  30     13801  76 types.FrameType
+     2      8  12     2752  15     16553  91 set
+     3      9  14      824   5     17377  96 list
+     4      1   2      232   1     17609  97 dict (no owner)
+     5      2   3      144   1     17753  98 builtins.weakref
+     6      1   2      144   1     17897  99 function
+     7      1   2      104   1     18001  99 dict of VariableState.VariableState
+     8      2   3       64   0     18065 100 int
+     9      1   2       48   0     18113 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 65 objects. Total size = 18916 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     31  48     9148  48      9148  48 list
+     1     24  37     8248  44     17396  92 types.FrameType
+     2      2   3      432   2     17828  94 _io.TextIOWrapper
+     3      1   2      400   2     18228  96 <Nothing>
+     4      1   2      232   1     18460  98 type
+     5      1   2      144   1     18604  98 dict of type
+     6      3   5      136   1     18740  99 dict (no owner)
+     7      1   2      104   1     18844 100 VariableState.VariableState
+     8      1   2       72   0     18916 100 set
+
+		Heap summary: largest referrer Partition of a set of 24 objects. Total size = 8248 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      8  33     5056  61      5056  61 types.FrameType
+     1      8  33     2752  33      7808  95 set
+     2      7  29      392   5      8200  99 list
+     3      1   4       48   1      8248 100 VariableState.VariableState 
+
+
+	Recursion depth 8
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 50 objects. Total size = 12679 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     10  20     6088  48      6088  48 types.FrameType
+     1      9  18     3224  25      9312  73 set
+     2     13  26     1943  15     11255  89 str
+     3     10  20      688   5     11943  94 list
+     4      1   2      232   2     12175  96 dict (no owner)
+     5      2   4      144   1     12319  97 builtins.weakref
+     6      1   2      144   1     12463  98 function
+     7      1   2      104   1     12567  99 dict of VariableState.VariableState
+     8      2   4       64   1     12631 100 int
+     9      1   2       48   0     12679 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 51 objects. Total size = 13482 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     27  53     9408  70      9408  70 types.FrameType
+     1     14  27     2746  20     12154  90 list
+     2      1   2      400   3     12554  93 <Nothing>
+     3      2   4      240   2     12794  95 _io.TextIOWrapper
+     4      1   2      232   2     13026  97 type
+     5      1   2      144   1     13170  98 dict of type
+     6      3   6      136   1     13306  99 dict (no owner)
+     7      1   2      104   1     13410  99 VariableState.VariableState
+     8      1   2       72   1     13482 100 set
+
+		Heap summary: largest referrer Partition of a set of 27 objects. Total size = 9408 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      9  33     5688  60      5688  60 types.FrameType
+     1      9  33     3224  34      8912  95 set
+     2      8  30      448   5      9360  99 list
+     3      1   4       48   1      9408 100 VariableState.VariableState 
+
+
+	Recursion depth 9
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 60 objects. Total size = 16507 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     11  18     6720  41      6720  41 types.FrameType
+     1     20  33     4227  26     10947  66 str
+     2     10  17     3952  24     14899  90 set
+     3     11  18      872   5     15771  96 list
+     4      1   2      232   1     16003  97 dict (no owner)
+     5      2   3      144   1     16147  98 builtins.weakref
+     6      1   2      144   1     16291  99 function
+     7      1   2      104   1     16395  99 dict of VariableState.VariableState
+     8      2   3       64   0     16459 100 int
+     9      1   2       48   0     16507 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 61 objects. Total size = 17310 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     30  49    10824  63     10824  63 types.FrameType
+     1     21  34     5030  29     15854  92 list
+     2      1   2      400   2     16254  94 <Nothing>
+     3      2   3      368   2     16622  96 _io.TextIOWrapper
+     4      1   2      232   1     16854  97 type
+     5      1   2      144   1     16998  98 dict of type
+     6      3   5      136   1     17134  99 dict (no owner)
+     7      1   2      104   1     17238 100 VariableState.VariableState
+     8      1   2       72   0     17310 100 set
+
+		Heap summary: largest referrer Partition of a set of 30 objects. Total size = 10824 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     10  33     6320  58      6320  58 types.FrameType
+     1     10  33     3952  37     10272  95 set
+     2      9  30      504   5     10776 100 list
+     3      1   3       48   0     10824 100 VariableState.VariableState 
+
+
+	Recursion depth 10
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 70 objects. Total size = 20274 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     12  17     7352  36      7352  36 types.FrameType
+     1     27  39     6514  32     13866  68 str
+     2     11  16     4680  23     18546  91 set
+     3     12  17      992   5     19538  96 list
+     4      1   1      232   1     19770  98 dict (no owner)
+     5      2   3      144   1     19914  98 builtins.weakref
+     6      1   1      144   1     20058  99 function
+     7      1   1      104   1     20162  99 dict of VariableState.VariableState
+     8      2   3       64   0     20226 100 int
+     9      1   1       48   0     20274 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 71 objects. Total size = 21077 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     33  46    12240  58     12240  58 types.FrameType
+     1     28  39     7317  35     19557  93 list
+     2      2   3      432   2     19989  95 _io.TextIOWrapper
+     3      1   1      400   2     20389  97 <Nothing>
+     4      1   1      232   1     20621  98 type
+     5      1   1      144   1     20765  99 dict of type
+     6      3   4      136   1     20901  99 dict (no owner)
+     7      1   1      104   0     21005 100 VariableState.VariableState
+     8      1   1       72   0     21077 100 set
+
+		Heap summary: largest referrer Partition of a set of 33 objects. Total size = 12240 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     11  33     6952  57      6952  57 types.FrameType
+     1     11  33     4680  38     11632  95 set
+     2     10  30      560   5     12192 100 list
+     3      1   3       48   0     12240 100 VariableState.VariableState 
+
+
+	Recursion depth 11
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 80 objects. Total size = 24042 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     34  42     8802  37      8802  37 str
+     1     13  16     7984  33     16786  70 types.FrameType
+     2     12  15     5408  22     22194  92 set
+     3     13  16     1112   5     23306  97 list
+     4      1   1      232   1     23538  98 dict (no owner)
+     5      2   2      144   1     23682  99 builtins.weakref
+     6      1   1      144   1     23826  99 function
+     7      1   1      104   0     23930 100 dict of VariableState.VariableState
+     8      2   2       64   0     23994 100 int
+     9      1   1       48   0     24042 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 81 objects. Total size = 24845 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     36  44    13656  55     13656  55 types.FrameType
+     1     35  43     9605  39     23261  94 list
+     2      2   2      496   2     23757  96 _io.TextIOWrapper
+     3      1   1      400   2     24157  97 <Nothing>
+     4      1   1      232   1     24389  98 type
+     5      1   1      144   1     24533  99 dict of type
+     6      3   4      136   1     24669  99 dict (no owner)
+     7      1   1      104   0     24773 100 VariableState.VariableState
+     8      1   1       72   0     24845 100 set
+
+		Heap summary: largest referrer Partition of a set of 36 objects. Total size = 13656 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     12  33     7584  56      7584  56 types.FrameType
+     1     12  33     5408  40     12992  95 set
+     2     11  31      616   5     13608 100 list
+     3      1   3       48   0     13656 100 VariableState.VariableState 
+
+
+	Recursion depth 12
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 66 objects. Total size = 18678 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     14  21     8616  46      8616  46 types.FrameType
+     1     13  20     6136  33     14752  79 set
+     2     17  26     2214  12     16966  91 str
+     3     14  21      976   5     17942  96 list
+     4      1   2      232   1     18174  97 dict (no owner)
+     5      2   3      144   1     18318  98 builtins.weakref
+     6      1   2      144   1     18462  99 function
+     7      1   2      104   1     18566  99 dict of VariableState.VariableState
+     8      2   3       64   0     18630 100 int
+     9      1   2       48   0     18678 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 67 objects. Total size = 19481 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     39  58    15072  77     15072  77 types.FrameType
+     1     18  27     3017  15     18089  93 list
+     2      1   1      400   2     18489  95 <Nothing>
+     3      2   3      304   2     18793  96 _io.TextIOWrapper
+     4      1   1      232   1     19025  98 type
+     5      1   1      144   1     19169  98 dict of type
+     6      3   4      136   1     19305  99 dict (no owner)
+     7      1   1      104   1     19409 100 VariableState.VariableState
+     8      1   1       72   0     19481 100 set
+
+		Heap summary: largest referrer Partition of a set of 39 objects. Total size = 15072 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     13  33     8216  55      8216  55 types.FrameType
+     1     13  33     6136  41     14352  95 set
+     2     12  31      672   4     15024 100 list
+     3      1   3       48   0     15072 100 VariableState.VariableState 
+
+
+	Recursion depth 13
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 76 objects. Total size = 22446 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     15  20     9248  41      9248  41 types.FrameType
+     1     14  18     6864  31     16112  72 set
+     2     24  32     4502  20     20614  92 str
+     3     15  20     1096   5     21710  97 list
+     4      1   1      232   1     21942  98 dict (no owner)
+     5      2   3      144   1     22086  98 builtins.weakref
+     6      1   1      144   1     22230  99 function
+     7      1   1      104   0     22334 100 dict of VariableState.VariableState
+     8      2   3       64   0     22398 100 int
+     9      1   1       48   0     22446 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 77 objects. Total size = 23249 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     42  55    16488  71     16488  71 types.FrameType
+     1     25  32     5305  23     21793  94 list
+     2      1   1      400   2     22193  95 <Nothing>
+     3      2   3      368   2     22561  97 _io.TextIOWrapper
+     4      1   1      232   1     22793  98 type
+     5      1   1      144   1     22937  99 dict of type
+     6      3   4      136   1     23073  99 dict (no owner)
+     7      1   1      104   0     23177 100 VariableState.VariableState
+     8      1   1       72   0     23249 100 set
+
+		Heap summary: largest referrer Partition of a set of 42 objects. Total size = 16488 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     14  33     8848  54      8848  54 types.FrameType
+     1     14  33     6864  42     15712  95 set
+     2     13  31      728   4     16440 100 list
+     3      1   2       48   0     16488 100 VariableState.VariableState 
+
+
+	Recursion depth 14
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 86 objects. Total size = 26214 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     16  19     9880  38      9880  38 types.FrameType
+     1     15  17     7592  29     17472  67 set
+     2     31  36     6790  26     24262  93 str
+     3     16  19     1216   5     25478  97 list
+     4      1   1      232   1     25710  98 dict (no owner)
+     5      2   2      144   1     25854  99 builtins.weakref
+     6      1   1      144   1     25998  99 function
+     7      1   1      104   0     26102 100 dict of VariableState.VariableState
+     8      2   2       64   0     26166 100 int
+     9      1   1       48   0     26214 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 87 objects. Total size = 27017 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     45  52    17904  66     17904  66 types.FrameType
+     1     32  37     7593  28     25497  94 list
+     2      2   2      432   2     25929  96 _io.TextIOWrapper
+     3      1   1      400   1     26329  97 <Nothing>
+     4      1   1      232   1     26561  98 type
+     5      1   1      144   1     26705  99 dict of type
+     6      3   3      136   1     26841  99 dict (no owner)
+     7      1   1      104   0     26945 100 VariableState.VariableState
+     8      1   1       72   0     27017 100 set
+
+		Heap summary: largest referrer Partition of a set of 45 objects. Total size = 17904 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     15  33     9480  53      9480  53 types.FrameType
+     1     15  33     7592  42     17072  95 set
+     2     14  31      784   4     17856 100 list
+     3      1   2       48   0     17904 100 VariableState.VariableState 
+
+
+	Recursion depth 15
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 96 objects. Total size = 29982 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     17  18    10512  35     10512  35 types.FrameType
+     1     38  40     9078  30     19590  65 str
+     2     16  17     8320  28     27910  93 set
+     3     17  18     1336   4     29246  98 list
+     4      1   1      232   1     29478  98 dict (no owner)
+     5      2   2      144   0     29622  99 builtins.weakref
+     6      1   1      144   0     29766  99 function
+     7      1   1      104   0     29870 100 dict of VariableState.VariableState
+     8      2   2       64   0     29934 100 int
+     9      1   1       48   0     29982 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 97 objects. Total size = 30785 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     48  49    19320  63     19320  63 types.FrameType
+     1     39  40     9881  32     29201  95 list
+     2      2   2      496   2     29697  96 _io.TextIOWrapper
+     3      1   1      400   1     30097  98 <Nothing>
+     4      1   1      232   1     30329  99 type
+     5      1   1      144   0     30473  99 dict of type
+     6      3   3      136   0     30609  99 dict (no owner)
+     7      1   1      104   0     30713 100 VariableState.VariableState
+     8      1   1       72   0     30785 100 set
+
+		Heap summary: largest referrer Partition of a set of 48 objects. Total size = 19320 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     16  33    10112  52     10112  52 types.FrameType
+     1     16  33     8320  43     18432  95 set
+     2     15  31      840   4     19272 100 list
+     3      1   2       48   0     19320 100 VariableState.VariableState 
+
+
+	Recursion depth 16
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 82 objects. Total size = 24616 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     18  22    11144  45     11144  45 types.FrameType
+     1     17  21     9048  37     20192  82 set
+     2     21  26     2488  10     22680  92 str
+     3     18  22     1200   5     23880  97 list
+     4      1   1      232   1     24112  98 dict (no owner)
+     5      2   2      144   1     24256  99 builtins.weakref
+     6      1   1      144   1     24400  99 function
+     7      1   1      104   0     24504 100 dict of VariableState.VariableState
+     8      2   2       64   0     24568 100 int
+     9      1   1       48   0     24616 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 83 objects. Total size = 25419 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     51  61    20736  82     20736  82 types.FrameType
+     1     22  27     3291  13     24027  95 list
+     2      1   1      400   2     24427  96 <Nothing>
+     3      2   2      304   1     24731  97 _io.TextIOWrapper
+     4      1   1      232   1     24963  98 type
+     5      1   1      144   1     25107  99 dict of type
+     6      3   4      136   1     25243  99 dict (no owner)
+     7      1   1      104   0     25347 100 VariableState.VariableState
+     8      1   1       72   0     25419 100 set
+
+		Heap summary: largest referrer Partition of a set of 51 objects. Total size = 20736 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     17  33    10744  52     10744  52 types.FrameType
+     1     17  33     9048  44     19792  95 set
+     2     16  31      896   4     20688 100 list
+     3      1   2       48   0     20736 100 VariableState.VariableState 
+
+
+	Recursion depth 17
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 92 objects. Total size = 28962 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     19  21    11776  41     11776  41 types.FrameType
+     1     18  20    10288  36     22064  76 set
+     2     28  30     4778  16     26842  93 str
+     3     19  21     1384   5     28226  97 list
+     4      1   1      232   1     28458  98 dict (no owner)
+     5      2   2      144   0     28602  99 builtins.weakref
+     6      1   1      144   0     28746  99 function
+     7      1   1      104   0     28850 100 dict of VariableState.VariableState
+     8      2   2       64   0     28914 100 int
+     9      1   1       48   0     28962 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 93 objects. Total size = 29765 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     54  58    22664  76     22664  76 types.FrameType
+     1     29  31     5581  19     28245  95 list
+     2      2   2      432   1     28677  96 _io.TextIOWrapper
+     3      1   1      400   1     29077  98 <Nothing>
+     4      1   1      232   1     29309  98 type
+     5      1   1      144   0     29453  99 dict of type
+     6      3   3      136   0     29589  99 dict (no owner)
+     7      1   1      104   0     29693 100 VariableState.VariableState
+     8      1   1       72   0     29765 100 set
+
+		Heap summary: largest referrer Partition of a set of 54 objects. Total size = 22664 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     18  33    11376  50     11376  50 types.FrameType
+     1     18  33    10288  45     21664  96 set
+     2     17  31      952   4     22616 100 list
+     3      1   2       48   0     22664 100 VariableState.VariableState 
+
+
+	Recursion depth 18
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 102 objects. Total size = 33244 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     20  20    12408  37     12408  37 types.FrameType
+     1     19  19    11528  35     23936  72 set
+     2     35  34     7068  21     31004  93 str
+     3     20  20     1504   5     32508  98 list
+     4      1   1      232   1     32740  98 dict (no owner)
+     5      2   2      144   0     32884  99 builtins.weakref
+     6      1   1      144   0     33028  99 function
+     7      1   1      104   0     33132 100 dict of VariableState.VariableState
+     8      2   2       64   0     33196 100 int
+     9      1   1       48   0     33244 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 103 objects. Total size = 34048 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     57  55    24592  72     24592  72 types.FrameType
+     1     36  35     7872  23     32464  95 list
+     2      2   2      496   1     32960  97 _io.TextIOWrapper
+     3      1   1      400   1     33360  98 <Nothing>
+     4      1   1      232   1     33592  99 type
+     5      1   1      144   0     33736  99 dict of type
+     6      3   3      136   0     33872  99 dict (no owner)
+     7      1   1      104   0     33976 100 VariableState.VariableState
+     8      1   1       72   0     34048 100 set
+
+		Heap summary: largest referrer Partition of a set of 57 objects. Total size = 24592 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     19  33    12008  49     12008  49 types.FrameType
+     1     19  33    11528  47     23536  96 set
+     2     18  32     1008   4     24544 100 list
+     3      1   2       48   0     24592 100 VariableState.VariableState 
+
+
+	Recursion depth 19
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 112 objects. Total size = 37528 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     21  19    13040  35     13040  35 types.FrameType
+     1     20  18    12768  34     25808  69 set
+     2     42  38     9360  25     35168  94 str
+     3     21  19     1624   4     36792  98 list
+     4      1   1      232   1     37024  99 dict (no owner)
+     5      2   2      144   0     37168  99 builtins.weakref
+     6      1   1      144   0     37312  99 function
+     7      1   1      104   0     37416 100 dict of VariableState.VariableState
+     8      2   2       64   0     37480 100 int
+     9      1   1       48   0     37528 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 113 objects. Total size = 38332 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     60  53    26520  69     26520  69 types.FrameType
+     1     43  38    10164  27     36684  96 list
+     2      2   2      560   1     37244  97 _io.TextIOWrapper
+     3      1   1      400   1     37644  98 <Nothing>
+     4      1   1      232   1     37876  99 type
+     5      1   1      144   0     38020  99 dict of type
+     6      3   3      136   0     38156 100 dict (no owner)
+     7      1   1      104   0     38260 100 VariableState.VariableState
+     8      1   1       72   0     38332 100 set
+
+		Heap summary: largest referrer Partition of a set of 60 objects. Total size = 26520 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     20  33    12768  48     12768  48 set
+     1     20  33    12640  48     25408  96 types.FrameType
+     2     19  32     1064   4     26472 100 list
+     3      1   2       48   0     26520 100 VariableState.VariableState 
+
+
+	Recursion depth 20
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 98 objects. Total size = 32673 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     21  21    14008  43     14008  43 set
+     1     22  22    13672  42     27680  85 types.FrameType
+     2     25  26     2769   8     30449  93 str
+     3     22  22     1488   5     31937  98 list
+     4      1   1      232   1     32169  98 dict (no owner)
+     5      2   2      144   0     32313  99 builtins.weakref
+     6      1   1      144   0     32457  99 function
+     7      1   1      104   0     32561 100 dict of VariableState.VariableState
+     8      2   2       64   0     32625 100 int
+     9      1   1       48   0     32673 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 99 objects. Total size = 33476 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     63  64    28448  85     28448  85 types.FrameType
+     1     26  26     3572  11     32020  96 list
+     2      1   1      400   1     32420  97 <Nothing>
+     3      2   2      368   1     32788  98 _io.TextIOWrapper
+     4      1   1      232   1     33020  99 type
+     5      1   1      144   0     33164  99 dict of type
+     6      3   3      136   0     33300  99 dict (no owner)
+     7      1   1      104   0     33404 100 VariableState.VariableState
+     8      1   1       72   0     33476 100 set
+
+		Heap summary: largest referrer Partition of a set of 63 objects. Total size = 28448 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     21  33    14008  49     14008  49 set
+     1     21  33    13272  47     27280  96 types.FrameType
+     2     20  32     1120   4     28400 100 list
+     3      1   2       48   0     28448 100 VariableState.VariableState 
+
+
+	Recursion depth 21
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 108 objects. Total size = 36955 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     22  20    15248  41     15248  41 set
+     1     23  21    14304  39     29552  80 types.FrameType
+     2     32  30     5059  14     34611  94 str
+     3     23  21     1608   4     36219  98 list
+     4      1   1      232   1     36451  99 dict (no owner)
+     5      2   2      144   0     36595  99 builtins.weakref
+     6      1   1      144   0     36739  99 function
+     7      1   1      104   0     36843 100 dict of VariableState.VariableState
+     8      2   2       64   0     36907 100 int
+     9      1   1       48   0     36955 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 109 objects. Total size = 37759 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     66  61    30376  80     30376  80 types.FrameType
+     1     33  30     5863  16     36239  96 list
+     2      2   2      432   1     36671  97 _io.TextIOWrapper
+     3      1   1      400   1     37071  98 <Nothing>
+     4      1   1      232   1     37303  99 type
+     5      1   1      144   0     37447  99 dict of type
+     6      3   3      136   0     37583 100 dict (no owner)
+     7      1   1      104   0     37687 100 VariableState.VariableState
+     8      1   1       72   0     37759 100 set
+
+		Heap summary: largest referrer Partition of a set of 66 objects. Total size = 30376 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     22  33    15248  50     15248  50 set
+     1     22  33    13904  46     29152  96 types.FrameType
+     2     21  32     1176   4     30328 100 list
+     3      1   2       48   0     30376 100 VariableState.VariableState 
+
+
+	Recursion depth 22
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 118 objects. Total size = 41239 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     23  19    16488  40     16488  40 set
+     1     24  20    14936  36     31424  76 types.FrameType
+     2     39  33     7351  18     38775  94 str
+     3     24  20     1728   4     40503  98 list
+     4      1   1      232   1     40735  99 dict (no owner)
+     5      2   2      144   0     40879  99 builtins.weakref
+     6      1   1      144   0     41023  99 function
+     7      1   1      104   0     41127 100 dict of VariableState.VariableState
+     8      2   2       64   0     41191 100 int
+     9      1   1       48   0     41239 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 119 objects. Total size = 42043 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     69  58    32304  77     32304  77 types.FrameType
+     1     40  34     8155  19     40459  96 list
+     2      2   2      496   1     40955  97 _io.TextIOWrapper
+     3      1   1      400   1     41355  98 <Nothing>
+     4      1   1      232   1     41587  99 type
+     5      1   1      144   0     41731  99 dict of type
+     6      3   3      136   0     41867 100 dict (no owner)
+     7      1   1      104   0     41971 100 VariableState.VariableState
+     8      1   1       72   0     42043 100 set
+
+		Heap summary: largest referrer Partition of a set of 69 objects. Total size = 32304 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     23  33    16488  51     16488  51 set
+     1     23  33    14536  45     31024  96 types.FrameType
+     2     22  32     1232   4     32256 100 list
+     3      1   1       48   0     32304 100 VariableState.VariableState 
+
+
+	Recursion depth 23
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 128 objects. Total size = 45523 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     24  19    17728  39     17728  39 set
+     1     25  20    15568  34     33296  73 types.FrameType
+     2     46  36     9643  21     42939  94 str
+     3     25  20     1848   4     44787  98 list
+     4      1   1      232   1     45019  99 dict (no owner)
+     5      2   2      144   0     45163  99 builtins.weakref
+     6      1   1      144   0     45307 100 function
+     7      1   1      104   0     45411 100 dict of VariableState.VariableState
+     8      2   2       64   0     45475 100 int
+     9      1   1       48   0     45523 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 129 objects. Total size = 46327 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     72  56    34232  74     34232  74 types.FrameType
+     1     47  36    10447  23     44679  96 list
+     2      2   2      560   1     45239  98 _io.TextIOWrapper
+     3      1   1      400   1     45639  99 <Nothing>
+     4      1   1      232   1     45871  99 type
+     5      1   1      144   0     46015  99 dict of type
+     6      3   2      136   0     46151 100 dict (no owner)
+     7      1   1      104   0     46255 100 VariableState.VariableState
+     8      1   1       72   0     46327 100 set
+
+		Heap summary: largest referrer Partition of a set of 72 objects. Total size = 34232 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     24  33    17728  52     17728  52 set
+     1     24  33    15168  44     32896  96 types.FrameType
+     2     23  32     1288   4     34184 100 list
+     3      1   1       48   0     34232 100 VariableState.VariableState 
+
+
+	Recursion depth 24
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 114 objects. Total size = 40665 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     25  22    18968  47     18968  47 set
+     1     26  23    16200  40     35168  86 types.FrameType
+     2     29  25     3049   7     38217  94 str
+     3     26  23     1712   4     39929  98 list
+     4      1   1      232   1     40161  99 dict (no owner)
+     5      2   2      144   0     40305  99 builtins.weakref
+     6      1   1      144   0     40449  99 function
+     7      1   1      104   0     40553 100 dict of VariableState.VariableState
+     8      2   2       64   0     40617 100 int
+     9      1   1       48   0     40665 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 115 objects. Total size = 41469 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     75  65    36160  87     36160  87 types.FrameType
+     1     30  26     3853   9     40013  96 list
+     2      1   1      400   1     40413  97 <Nothing>
+     3      2   2      368   1     40781  98 _io.TextIOWrapper
+     4      1   1      232   1     41013  99 type
+     5      1   1      144   0     41157  99 dict of type
+     6      3   3      136   0     41293 100 dict (no owner)
+     7      1   1      104   0     41397 100 VariableState.VariableState
+     8      1   1       72   0     41469 100 set
+
+		Heap summary: largest referrer Partition of a set of 75 objects. Total size = 36160 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     25  33    18968  52     18968  52 set
+     1     25  33    15800  44     34768  96 types.FrameType
+     2     24  32     1344   4     36112 100 list
+     3      1   1       48   0     36160 100 VariableState.VariableState 
+
+
+	Recursion depth 25
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 124 objects. Total size = 45013 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     26  21    20208  45     20208  45 set
+     1     27  22    16832  37     37040  82 types.FrameType
+     2     36  29     5341  12     42381  94 str
+     3     27  22     1896   4     44277  98 list
+     4      1   1      232   1     44509  99 dict (no owner)
+     5      2   2      144   0     44653  99 builtins.weakref
+     6      1   1      144   0     44797 100 function
+     7      1   1      104   0     44901 100 dict of VariableState.VariableState
+     8      2   2       64   0     44965 100 int
+     9      1   1       48   0     45013 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 125 objects. Total size = 45817 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     78  62    38088  83     38088  83 types.FrameType
+     1     37  30     6145  13     44233  97 list
+     2      2   2      496   1     44729  98 _io.TextIOWrapper
+     3      1   1      400   1     45129  98 <Nothing>
+     4      1   1      232   1     45361  99 type
+     5      1   1      144   0     45505  99 dict of type
+     6      3   2      136   0     45641 100 dict (no owner)
+     7      1   1      104   0     45745 100 VariableState.VariableState
+     8      1   1       72   0     45817 100 set
+
+		Heap summary: largest referrer Partition of a set of 78 objects. Total size = 38088 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     26  33    20208  53     20208  53 set
+     1     26  33    16432  43     36640  96 types.FrameType
+     2     25  32     1400   4     38040 100 list
+     3      1   1       48   0     38088 100 VariableState.VariableState 
+
+
+	Recursion depth 26
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 134 objects. Total size = 49297 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     27  20    21448  44     21448  44 set
+     1     28  21    17464  35     38912  79 types.FrameType
+     2     43  32     7633  15     46545  94 str
+     3     28  21     2016   4     48561  99 list
+     4      1   1      232   0     48793  99 dict (no owner)
+     5      2   1      144   0     48937  99 builtins.weakref
+     6      1   1      144   0     49081 100 function
+     7      1   1      104   0     49185 100 dict of VariableState.VariableState
+     8      2   1       64   0     49249 100 int
+     9      1   1       48   0     49297 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 135 objects. Total size = 50101 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     81  60    40016  80     40016  80 types.FrameType
+     1     44  33     8437  17     48453  97 list
+     2      2   1      560   1     49013  98 _io.TextIOWrapper
+     3      1   1      400   1     49413  99 <Nothing>
+     4      1   1      232   0     49645  99 type
+     5      1   1      144   0     49789  99 dict of type
+     6      3   2      136   0     49925 100 dict (no owner)
+     7      1   1      104   0     50029 100 VariableState.VariableState
+     8      1   1       72   0     50101 100 set
+
+		Heap summary: largest referrer Partition of a set of 81 objects. Total size = 40016 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     27  33    21448  54     21448  54 set
+     1     27  33    17064  43     38512  96 types.FrameType
+     2     26  32     1456   4     39968 100 list
+     3      1   1       48   0     40016 100 VariableState.VariableState 
+
+
+	Recursion depth 27
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 144 objects. Total size = 53581 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     28  19    22688  42     22688  42 set
+     1     29  20    18096  34     40784  76 types.FrameType
+     2     50  35     9925  19     50709  95 str
+     3     29  20     2136   4     52845  99 list
+     4      1   1      232   0     53077  99 dict (no owner)
+     5      2   1      144   0     53221  99 builtins.weakref
+     6      1   1      144   0     53365 100 function
+     7      1   1      104   0     53469 100 dict of VariableState.VariableState
+     8      2   1       64   0     53533 100 int
+     9      1   1       48   0     53581 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 145 objects. Total size = 54385 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     84  58    41944  77     41944  77 types.FrameType
+     1     51  35    10729  20     52673  97 list
+     2      2   1      624   1     53297  98 _io.TextIOWrapper
+     3      1   1      400   1     53697  99 <Nothing>
+     4      1   1      232   0     53929  99 type
+     5      1   1      144   0     54073  99 dict of type
+     6      3   2      136   0     54209 100 dict (no owner)
+     7      1   1      104   0     54313 100 VariableState.VariableState
+     8      1   1       72   0     54385 100 set
+
+		Heap summary: largest referrer Partition of a set of 84 objects. Total size = 41944 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     28  33    22688  54     22688  54 set
+     1     28  33    17696  42     40384  96 types.FrameType
+     2     27  32     1512   4     41896 100 list
+     3      1   1       48   0     41944 100 VariableState.VariableState 
+
+
+	Recursion depth 28
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 130 objects. Total size = 48721 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     29  22    23928  49     23928  49 set
+     1     30  23    18728  38     42656  88 types.FrameType
+     2     33  25     3329   7     45985  94 str
+     3     30  23     2000   4     47985  98 list
+     4      1   1      232   0     48217  99 dict (no owner)
+     5      2   2      144   0     48361  99 builtins.weakref
+     6      1   1      144   0     48505 100 function
+     7      1   1      104   0     48609 100 dict of VariableState.VariableState
+     8      2   2       64   0     48673 100 int
+     9      1   1       48   0     48721 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 131 objects. Total size = 49525 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     87  66    43872  89     43872  89 types.FrameType
+     1     34  26     4133   8     48005  97 list
+     2      2   2      432   1     48437  98 _io.TextIOWrapper
+     3      1   1      400   1     48837  99 <Nothing>
+     4      1   1      232   0     49069  99 type
+     5      1   1      144   0     49213  99 dict of type
+     6      3   2      136   0     49349 100 dict (no owner)
+     7      1   1      104   0     49453 100 VariableState.VariableState
+     8      1   1       72   0     49525 100 set
+
+		Heap summary: largest referrer Partition of a set of 87 objects. Total size = 43872 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     29  33    23928  55     23928  55 set
+     1     29  33    18328  42     42256  96 types.FrameType
+     2     28  32     1568   4     43824 100 list
+     3      1   1       48   0     43872 100 VariableState.VariableState 
+
+
+	Recursion depth 29
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 140 objects. Total size = 53005 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     30  21    25168  47     25168  47 set
+     1     31  22    19360  37     44528  84 types.FrameType
+     2     40  29     5621  11     50149  95 str
+     3     31  22     2120   4     52269  99 list
+     4      1   1      232   0     52501  99 dict (no owner)
+     5      2   1      144   0     52645  99 builtins.weakref
+     6      1   1      144   0     52789 100 function
+     7      1   1      104   0     52893 100 dict of VariableState.VariableState
+     8      2   1       64   0     52957 100 int
+     9      1   1       48   0     53005 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 141 objects. Total size = 53809 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     90  64    45800  85     45800  85 types.FrameType
+     1     41  29     6425  12     52225  97 list
+     2      2   1      496   1     52721  98 _io.TextIOWrapper
+     3      1   1      400   1     53121  99 <Nothing>
+     4      1   1      232   0     53353  99 type
+     5      1   1      144   0     53497  99 dict of type
+     6      3   2      136   0     53633 100 dict (no owner)
+     7      1   1      104   0     53737 100 VariableState.VariableState
+     8      1   1       72   0     53809 100 set
+
+		Heap summary: largest referrer Partition of a set of 90 objects. Total size = 45800 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     30  33    25168  55     25168  55 set
+     1     30  33    18960  41     44128  96 types.FrameType
+     2     29  32     1624   4     45752 100 list
+     3      1   1       48   0     45800 100 VariableState.VariableState 
+
+
+	Recursion depth 30
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 150 objects. Total size = 57289 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     31  21    26408  46     26408  46 set
+     1     32  21    19992  35     46400  81 types.FrameType
+     2     47  31     7913  14     54313  95 str
+     3     32  21     2240   4     56553  99 list
+     4      1   1      232   0     56785  99 dict (no owner)
+     5      2   1      144   0     56929  99 builtins.weakref
+     6      1   1      144   0     57073 100 function
+     7      1   1      104   0     57177 100 dict of VariableState.VariableState
+     8      2   1       64   0     57241 100 int
+     9      1   1       48   0     57289 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 151 objects. Total size = 58093 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     93  62    47728  82     47728  82 types.FrameType
+     1     48  32     8717  15     56445  97 list
+     2      2   1      560   1     57005  98 _io.TextIOWrapper
+     3      1   1      400   1     57405  99 <Nothing>
+     4      1   1      232   0     57637  99 type
+     5      1   1      144   0     57781  99 dict of type
+     6      3   2      136   0     57917 100 dict (no owner)
+     7      1   1      104   0     58021 100 VariableState.VariableState
+     8      1   1       72   0     58093 100 set
+
+		Heap summary: largest referrer Partition of a set of 93 objects. Total size = 47728 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     31  33    26408  55     26408  55 set
+     1     31  33    19592  41     46000  96 types.FrameType
+     2     30  32     1680   4     47680 100 list
+     3      1   1       48   0     47728 100 VariableState.VariableState 
+
+
+	Recursion depth 31
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 160 objects. Total size = 61573 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     32  20    27648  45     27648  45 set
+     1     33  21    20624  33     48272  78 types.FrameType
+     2     54  34    10205  17     58477  95 str
+     3     33  21     2360   4     60837  99 list
+     4      1   1      232   0     61069  99 dict (no owner)
+     5      2   1      144   0     61213  99 builtins.weakref
+     6      1   1      144   0     61357 100 function
+     7      1   1      104   0     61461 100 dict of VariableState.VariableState
+     8      2   1       64   0     61525 100 int
+     9      1   1       48   0     61573 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 161 objects. Total size = 62377 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     96  60    49656  80     49656  80 types.FrameType
+     1     55  34    11009  18     60665  97 list
+     2      2   1      624   1     61289  98 _io.TextIOWrapper
+     3      1   1      400   1     61689  99 <Nothing>
+     4      1   1      232   0     61921  99 type
+     5      1   1      144   0     62065  99 dict of type
+     6      3   2      136   0     62201 100 dict (no owner)
+     7      1   1      104   0     62305 100 VariableState.VariableState
+     8      1   1       72   0     62377 100 set
+
+		Heap summary: largest referrer Partition of a set of 96 objects. Total size = 49656 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     32  33    27648  56     27648  56 set
+     1     32  33    20224  41     47872  96 types.FrameType
+     2     31  32     1736   3     49608 100 list
+     3      1   1       48   0     49656 100 VariableState.VariableState 
+
+
+	Recursion depth 32
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 146 objects. Total size = 56713 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     33  23    28888  51     28888  51 set
+     1     34  23    21256  37     50144  88 types.FrameType
+     2     37  25     3609   6     53753  95 str
+     3     34  23     2224   4     55977  99 list
+     4      1   1      232   0     56209  99 dict (no owner)
+     5      2   1      144   0     56353  99 builtins.weakref
+     6      1   1      144   0     56497 100 function
+     7      1   1      104   0     56601 100 dict of VariableState.VariableState
+     8      2   1       64   0     56665 100 int
+     9      1   1       48   0     56713 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 147 objects. Total size = 57517 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     99  67    51584  90     51584  90 types.FrameType
+     1     38  26     4413   8     55997  97 list
+     2      2   1      432   1     56429  98 _io.TextIOWrapper
+     3      1   1      400   1     56829  99 <Nothing>
+     4      1   1      232   0     57061  99 type
+     5      1   1      144   0     57205  99 dict of type
+     6      3   2      136   0     57341 100 dict (no owner)
+     7      1   1      104   0     57445 100 VariableState.VariableState
+     8      1   1       72   0     57517 100 set
+
+		Heap summary: largest referrer Partition of a set of 99 objects. Total size = 51584 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     33  33    28888  56     28888  56 set
+     1     33  33    20856  40     49744  96 types.FrameType
+     2     32  32     1792   3     51536 100 list
+     3      1   1       48   0     51584 100 VariableState.VariableState 
+
+
+	Recursion depth 33
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 156 objects. Total size = 62085 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     34  22    31152  50     31152  50 set
+     1     35  22    21888  35     53040  85 types.FrameType
+     2     44  28     5901  10     58941  95 str
+     3     35  22     2408   4     61349  99 list
+     4      1   1      232   0     61581  99 dict (no owner)
+     5      2   1      144   0     61725  99 builtins.weakref
+     6      1   1      144   0     61869 100 function
+     7      1   1      104   0     61973 100 dict of VariableState.VariableState
+     8      2   1       64   0     62037 100 int
+     9      1   1       48   0     62085 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 157 objects. Total size = 62889 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0    102  65    54536  87     54536  87 types.FrameType
+     1     45  29     6705  11     61241  97 list
+     2      2   1      560   1     61801  98 _io.TextIOWrapper
+     3      1   1      400   1     62201  99 <Nothing>
+     4      1   1      232   0     62433  99 type
+     5      1   1      144   0     62577 100 dict of type
+     6      3   2      136   0     62713 100 dict (no owner)
+     7      1   1      104   0     62817 100 VariableState.VariableState
+     8      1   1       72   0     62889 100 set
+
+		Heap summary: largest referrer Partition of a set of 102 objects. Total size = 54536 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     34  33    31152  57     31152  57 set
+     1     34  33    21488  39     52640  97 types.FrameType
+     2     33  32     1848   3     54488 100 list
+     3      1   1       48   0     54536 100 VariableState.VariableState 
+
+
+	Recursion depth 34
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 166 objects. Total size = 67394 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     35  21    33416  50     33416  50 set
+     1     36  22    22520  33     55936  83 types.FrameType
+     2     51  31     8194  12     64130  95 str
+     3     36  22     2528   4     66658  99 list
+     4      1   1      232   0     66890  99 dict (no owner)
+     5      2   1      144   0     67034  99 builtins.weakref
+     6      1   1      144   0     67178 100 function
+     7      1   1      104   0     67282 100 dict of VariableState.VariableState
+     8      2   1       64   0     67346 100 int
+     9      1   1       48   0     67394 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 167 objects. Total size = 68198 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0    105  63    57488  84     57488  84 types.FrameType
+     1     52  31     8998  13     66486  97 list
+     2      2   1      624   1     67110  98 _io.TextIOWrapper
+     3      1   1      400   1     67510  99 <Nothing>
+     4      1   1      232   0     67742  99 type
+     5      1   1      144   0     67886 100 dict of type
+     6      3   2      136   0     68022 100 dict (no owner)
+     7      1   1      104   0     68126 100 VariableState.VariableState
+     8      1   1       72   0     68198 100 set
+
+		Heap summary: largest referrer Partition of a set of 105 objects. Total size = 57488 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     35  33    33416  58     33416  58 set
+     1     35  33    22120  38     55536  97 types.FrameType
+     2     34  32     1904   3     57440 100 list
+     3      1   1       48   0     57488 100 VariableState.VariableState 
+
+
+	Recursion depth 35
+		Locations solved: 0
+		Backwards_vals: - bytes
+		Location_value_map: 64 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 176 objects. Total size = 72703 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     36  20    35680  49     35680  49 set
+     1     37  21    23152  32     58832  81 types.FrameType
+     2     58  33    10487  14     69319  95 str
+     3     37  21     2648   4     71967  99 list
+     4      1   1      232   0     72199  99 dict (no owner)
+     5      2   1      144   0     72343 100 builtins.weakref
+     6      1   1      144   0     72487 100 function
+     7      1   1      104   0     72591 100 dict of VariableState.VariableState
+     8      2   1       64   0     72655 100 int
+     9      1   1       48   0     72703 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 177 objects. Total size = 73507 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0    108  61    60440  82     60440  82 types.FrameType
+     1     59  33    11291  15     71731  98 list
+     2      2   1      688   1     72419  99 _io.TextIOWrapper
+     3      1   1      400   1     72819  99 <Nothing>
+     4      1   1      232   0     73051  99 type
+     5      1   1      144   0     73195 100 dict of type
+     6      3   2      136   0     73331 100 dict (no owner)
+     7      1   1      104   0     73435 100 VariableState.VariableState
+     8      1   1       72   0     73507 100 set
+
+		Heap summary: largest referrer Partition of a set of 108 objects. Total size = 60440 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     36  33    35680  59     35680  59 set
+     1     36  33    22752  38     58432  97 types.FrameType
+     2     35  32     1960   3     60392 100 list
+     3      1   1       48   0     60440 100 VariableState.VariableState 
+
+
+	Recursion depth 34
+		Locations solved: 1
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 433 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 160 objects. Total size = 65461 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     36  22    35680  55     35680  55 set
+     1     36  22    22520  34     58200  89 types.FrameType
+     2     42  26     3981   6     62181  95 str
+     3     38  24     2544   4     64725  99 list
+     4      1   1      232   0     64957  99 dict (no owner)
+     5      2   1      144   0     65101  99 builtins.weakref
+     6      1   1      144   0     65245 100 function
+     7      1   1      104   0     65349 100 dict of VariableState.VariableState
+     8      2   1       64   0     65413 100 int
+     9      1   1       48   0     65461 100 VariableState.VariableState bytes
+
+		Heap summary: by referrer Partition of a set of 161 objects. Total size = 66329 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0    106  66    59760  90     59760  90 types.FrameType
+     1     43  27     4785   7     64545  97 list
+     2      2   1      560   1     65105  98 _io.TextIOWrapper
+     3      1   1      400   1     65505  99 <Nothing>
+     4      1   1      232   0     65737  99 type
+     5      1   1      144   0     65881  99 dict of type
+     6      3   2      136   0     66017 100 dict (no owner)
+     7      1   1      104   0     66121 100 VariableState.VariableState
+     8      1   1       88   0     66209 100 dict (no owner), types.FrameType
+     9      1   1       72   0     66281 100 set
+    10      1   1       48   0     66329 100 list, types.FrameType
+
+		Heap summary: largest referrer Partition of a set of 106 objects. Total size = 59760 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     36  34    35680  60     35680  60 set
+     1     35  33    22120  37     57800  97 types.FrameType
+     2     35  33     1960   3     59760 100 list 
+
+
+	Recursion depth 33
+		Locations solved: 2
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 1706 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 249 objects. Total size = 256278 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     21   8   186472  73    186472  73 dict (no owner)
+     1     35  14    33416  13    219888  86 set
+     2     35  14    21888   9    241776  94 types.FrameType
+     3     50  20     6438   3    248214  97 str
+     4     38  15     2864   1    251078  98 list
+     5     21   8     2184   1    253262  99 dict of VariableState.VariableState
+     6     15   6     1080   0    254342  99 builtins.weakref
+     7     21   8     1008   0    255350 100 VariableState.VariableState
+     8     10   4      720   0    256070 100 types.BuiltinMethodType
+     9      1   0      144   0    256214 100 function
+    10      2   1       64   0    256278 100 int bytes
+
+		Heap summary: by referrer Partition of a set of 250 objects. Total size = 257152 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0     20   8   186240  72    186240  72 dict of VariableState.VariableState
+     1    103  41    56808  22    243048  95 types.FrameType
+     2     71  28     8272   3    251320  98 list
+     3     21   8     2184   1    253504  99 VariableState.VariableState
+     4     11   4      792   0    254296  99 set
+     5     10   4      720   0    255016  99 builtins.weakref
+     6      2   1      624   0    255640  99 _io.TextIOWrapper
+     7      7   3      440   0    256080 100 dict (no owner)
+     8      1   0      400   0    256480 100 <Nothing>
+     9      1   0      248   0    256728 100 dict (no owner), types.FrameType
+<3 more rows. Type e.g. '_.more' to view.>
+
+		Heap summary: largest referrer Partition of a set of 20 objects. Total size = 186240 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0     20 100   186240 100    186240 100 dict (no owner) 
+
+
+	Recursion depth 32
+		Locations solved: 3
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 7491 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 555 objects. Total size = 1203153 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0    121  22  1117672  93   1117672  93 dict (no owner)
+     1     34   6    31152   3   1148824  95 set
+     2     34   6    21256   2   1170080  97 types.FrameType
+     3    121  22    12584   1   1182664  98 dict of VariableState.VariableState
+     4     58  10     8881   1   1191545  99 str
+     5    121  22     5808   0   1197353 100 VariableState.VariableState
+     6     38   7     3792   0   1201145 100 list
+     7     15   3     1080   0   1202225 100 builtins.weakref
+     8     10   2      720   0   1202945 100 types.BuiltinMethodType
+     9      1   0      144   0   1203089 100 function
+    10      2   0       64   0   1203153 100 int bytes
+
+		Heap summary: by referrer Partition of a set of 556 objects. Total size = 1204028 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0    120  22  1117440  93   1117440  93 dict of VariableState.VariableState
+     1    100  18    53856   4   1171296  97 types.FrameType
+     2    179  32    15516   1   1186812  99 list
+     3    121  22    12584   1   1199396 100 VariableState.VariableState
+     4      1   0      920   0   1200316 100 dict (no owner), types.FrameType
+     5     11   2      792   0   1201108 100 set
+     6     10   2      720   0   1201828 100 builtins.weakref
+     7      2   0      688   0   1202516 100 _io.TextIOWrapper
+     8      8   1      688   0   1203204 100 dict (no owner)
+     9      1   0      400   0   1203604 100 <Nothing>
+<3 more rows. Type e.g. '_.more' to view.>
+
+		Heap summary: largest referrer Partition of a set of 120 objects. Total size = 1117440 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0    120 100  1117440 100   1117440 100 dict (no owner) 
+
+
+	Recursion depth 31
+		Locations solved: 4
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 69212 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 4262 objects. Total size = 11652444 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0   1221  29 11360872  97  11360872  97 dict (no owner)
+     1   1221  29   126984   1  11487856  99 dict of VariableState.VariableState
+     2   1221  29    58608   1  11546464  99 VariableState.VariableState
+     3     33   1    28888   0  11575352  99 set
+     4    200   5    20800   0  11596152 100 dict of momba.model.expressions.Boolean
+     5     33   1    20624   0  11616776 100 types.FrameType
+     6     38   1    12656   0  11629432 100 list
+     7     66   2    11332   0  11640764 100 str
+     8    200   5     9600   0  11650364 100 momba.model.expressions.Boolean
+     9     16   0     1152   0  11651516 100 builtins.weakref
+<3 more rows. Type e.g. '_.more' to view.> bytes
+
+		Heap summary: by referrer Partition of a set of 4235 objects. Total size = 11644336 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0   1220  29 11360640  98  11360640  98 dict of VariableState.VariableState
+     1   1221  29   126984   1  11487624  99 VariableState.VariableState
+     2   1259  30    61250   1  11548874  99 list
+     3     97   2    50904   0  11599778 100 types.FrameType
+     4    200   5    20800   0  11620578 100 momba.model.expressions.Boolean
+     5    210   5    11280   0  11631858 100 dict (no owner)
+     6      1   0     8856   0  11640714 100 dict (no owner), types.FrameType
+     7      2   0     1286   0  11642000 100 _io.TextIOWrapper
+     8     11   0      792   0  11642792 100 set
+     9     10   0      720   0  11643512 100 builtins.weakref
+<4 more rows. Type e.g. '_.more' to view.>
+
+		Heap summary: largest referrer Partition of a set of 1220 objects. Total size = 11360640 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0   1220 100 11360640 100  11360640 100 dict (no owner) 
+
+
+	Recursion depth 30
+		Locations solved: 5
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 506101 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 128541 objects. Total size = 92275422 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0   8921   7 83063272  90  83063272  90 dict (no owner)
+     1  50800  40  5283200   6  88346472  96 dict of momba.model.expressions.Boolean
+     2  50800  40  2438400   3  90784872  98 momba.model.expressions.Boolean
+     3   8921   7   927784   1  91712656  99 dict of VariableState.VariableState
+     4   8921   7   428208   0  92140864 100 VariableState.VariableState
+     5     38   0    79632   0  92220496 100 list
+     6     32   0    27648   0  92248144 100 set
+     7     32   0    19992   0  92268136 100 types.FrameType
+     8     47   0     5206   0  92273342 100 str
+     9     16   0     1152   0  92274494 100 builtins.weakref
+<3 more rows. Type e.g. '_.more' to view.> bytes
+
+		Heap summary: by referrer Partition of a set of 128542 objects. Total size = 92276334 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0   8920   7 83063040  90  83063040  90 dict of VariableState.VariableState
+     1  50800  40  5283200   6  88346240  96 momba.model.expressions.Boolean
+     2  30800  24  1478400   2  89824640  97 dict of momba.model.expressions.Boolean
+     3  20011  16   970536   1  90795176  98 dict (no owner)
+     4   8921   7   927784   1  91722960  99 VariableState.VariableState
+     5   8968   7   434278   0  92157238 100 list
+     6      1   0    67224   0  92224462 100 dict (no owner), types.FrameType
+     7     94   0    48976   0  92273438 100 types.FrameType
+     8     11   0      792   0  92274230 100 set
+     9     10   0      720   0  92274950 100 builtins.weakref
+<5 more rows. Type e.g. '_.more' to view.>
+
+		Heap summary: largest referrer Partition of a set of 8920 objects. Total size = 83063040 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0   8920 100 83063040 100  83063040 100 dict (no owner) 
+
+
+	Recursion depth 29
+		Locations solved: 6
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 1057838 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 234695 objects. Total size = 190165597 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0  18637   8 173538664  91 173538664  91 dict (no owner)
+     1  89300  38  9287200   5 182825864  96 dict of momba.model.expressions.Boolean
+     2  89300  38  4286400   2 187112264  98 momba.model.expressions.Boolean
+     3  18637   8  1938248   1 189050512  99 dict of VariableState.VariableState
+     4  18637   8   894576   0 189945088 100 VariableState.VariableState
+     5     38   0   164912   0 190110000 100 list
+     6     31   0    26408   0 190136408 100 set
+     7     31   0    19360   0 190155768 100 types.FrameType
+     8     55   0     7749   0 190163517 100 str
+     9     16   0     1152   0 190164669 100 builtins.weakref
+<3 more rows. Type e.g. '_.more' to view.> bytes
+
+		Heap summary: by referrer Partition of a set of 234696 objects. Total size = 190166511 bytes.
+ Index  Count   %     Size   % Cumulative  % Referrers by Kind (class / dict of class)
+     0  18636   8 173538432  91 173538432  91 dict of VariableState.VariableState
+     1  89300  38  9287200   5 182825632  96 momba.model.expressions.Boolean
+     2  58512  25  2885760   2 185711392  98 dict (no owner)
+     3  18637   8  1938248   1 187649640  99 VariableState.VariableState
+     4  30800  13  1478400   1 189128040  99 dict of momba.model.expressions.Boolean
+     5  18692   8   903191   0 190031231 100 list
+     6      1   0    85176   0 190116407 100 dict (no owner), types.FrameType
+     7     91   0    47048   0 190163455 100 types.FrameType
+     8     11   0      792   0 190164247 100 set
+     9      2   0      720   0 190164967 100 _io.TextIOWrapper
+<5 more rows. Type e.g. '_.more' to view.>
+
+		Heap summary: largest referrer Partition of a set of 18636 objects. Total size = 173538432 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0  18636 100 173538432 100 173538432 100 dict (no owner) 
+
+
+	Recursion depth 28
+		Locations solved: 7
+		Location_value_map id: 139965003908096
+		Backwards_vals: - bytes
+		Location_value_map: 12009319 bytes
+		Final_vals: - bytes
+
+		Heap summary: by type Partition of a set of 817661 objects. Total size = 2030834824 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0 212957  26 1983046504  98 1983046504  98 dict (no owner)
+     1 212957  26 22147528   1 2005194032  99 dict of VariableState.VariableState
+     2 212957  26 10221936   1 2015415968  99 VariableState.VariableState
+     3  89300  11  9287200   0 2024703168 100 dict of momba.model.expressions.Boolean
+     4  89300  11  4286400   0 2028989568 100 momba.model.expressions.Boolean
+     5     38   0  1788976   0 2030778544 100 list
+     6     30   0    25168   0 2030803712 100 set
+     7     30   0    18728   0 2030822440 100 types.FrameType
+     8     63   0    10304   0 2030832744 100 str
+     9     16   0     1152   0 2030833896 100 builtins.weakref
+<3 more rows. Type e.g. '_.more' to view.> bytes
+

@@ -8,10 +8,7 @@ from momba.model.operators import *
 from VariableState import VariableState
 from TotalSize import total_size
 
-from guppy import hpy
-h = hpy()
-
-def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map, depth, workfile):
+def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map, depth, workfile, datafile, h):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -27,17 +24,18 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
 
     print(f'\tRecursion depth {depth}')
     print(f'\t\tLocations solved: {len(location_value_map)}')
-#    print(f'\t\tHeap size: {h.heap()} bytes\n')
-    print(f'\t\tBackwards_vals: - bytes')
-    print(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes')
-    print(f'\t\tFinal_vals: - bytes')
+
     workfile.write(f'\tRecursion depth {depth}\n')
     workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
-#    workfile.write(f'\t\tHeap size: {h.heap()} bytes\n\n')
     workfile.write(f'\t\tBackwards_vals: - bytes\n')
     workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
     workfile.write(f'\t\tFinal_vals: - bytes\n\n')
-   
+    workfile.write(f'\t\tHeap summary: by type {h.heap()} bytes\n\n')
+    workfile.write(f'\t\tHeap summary: by referrer {h.heap().byrcs}\n\n')
+    workfile.write(f'\t\tHeap summary: largest referrer {h.heap().byrcs[0].byclodo} \n\n\n')
+
+    datafile.write(f'{depth}\t{h.heap()[0].size}\t{h.heap().byrcs[0].size}\t{h.heap().byrcs[0].byclodo[0].size}\n')
+  
 
     if location in visited:
         # The incoming state is the default value of the variables.
@@ -74,23 +72,21 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 # Recurse down each path all the way first before doing the evaluations.
                 # This allows the current variable values to be accesible when evaluating the proper
                 # guards that should be considered true
-                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, (depth+1), workfile)
+                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, (depth+1), workfile, datafile, h)
                 location_value_map[dest.name] = backwards_vals
                 #print(backwards_vals)
-
                 print(f'\tRecursion depth {depth}')
                 print(f'\t\tLocations solved: {len(location_value_map)}')
-#                print(f'\t\tHeap size: {h.heap()} bytes\n')
-                print(f'\t\tBackwards_vals: {total_size(backwards_vals)} bytes')
-                print(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes')
-                print(f'\t\tFinal_vals: {total_size(final_vals)} bytes')
                 workfile.write(f'\tRecursion depth {depth}\n')
                 workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
-#                workfile.write(f'\t\tHeap size: {h.heap()} bytes\n\n')
-                workfile.write(f'\t\tBackwards_vals: {total_size(backwards_vals)} bytes\n')
+                workfile.write(f'\t\tLocation_value_map id: {id(location_value_map)}\n')
+                workfile.write(f'\t\tBackwards_vals: - bytes\n')
                 workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
-                workfile.write(f'\t\tFinal_vals: {total_size(final_vals)} bytes\n\n')
- 
+                workfile.write(f'\t\tFinal_vals: - bytes\n\n')
+                workfile.write(f'\t\tHeap summary: by type {h.heap()} bytes\n\n')
+                workfile.write(f'\t\tHeap summary: by referrer {h.heap().byrcs}\n\n')
+                workfile.write(f'\t\tHeap summary: largest referrer {h.heap().byrcs[0].byclodo} \n\n\n')
+                datafile.write(f'{depth}\t{h.heap()[0].size}\t{h.heap().byrcs[0].size}\t{h.heap().byrcs[0].byclodo[0].size}\n')
 
             # For each possible set of variable values
             for val in backwards_vals:        
@@ -100,12 +96,8 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
                 # value of the guard. So they will all be considered true, which is faulty behavior at this point 
                 if check_guard(val.var_values, edge.guard):
-
-                    print(repr(edge.guard))
-                    workfile.write(repr(edge.guard))
-
+                    var_state = VariableState(val)
                     for destination in edge.destinations:
-                        var_state = VariableState(val)
                         # Apply this set of assignments to the variable values, along with the proper probability update
                         var_state.var_values = substitute_vals(var_state.var_values, destination)
                         var_state.compound_probability(destination.probability)

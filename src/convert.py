@@ -9,8 +9,13 @@ from VariableState import VariableState
 from NewModel import make_new_model
 from TotalSize import total_size
 
+from guppy import hpy
+h = hpy()
+
+
 # Open workfile
 workfile = open( 'workfile.txt', 'w', encoding = 'utf-8')
+datafile = open( 'datafile.txt', 'w', encoding = 'utf-8')
 
 # Desigate paramaters interactively or from initial call
 interactive_mode = (sys.argv[1] == '-i')
@@ -70,7 +75,7 @@ if interactive_mode:
     print("")
     workfile.write("\n")
 else: 
-    target_vars = [momba_model.expressions.Name('z')]
+    target_vars = [momba_model.expressions.Name('optimalRuns')]
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')
@@ -137,10 +142,15 @@ for i, target in enumerate(target_locs):
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
+    if i+1 != 8:
+        continue
+
     location_value_map = dict()
     print("Evaluating possibilities...")
     workfile.write("Evaluating possibilities...\n")
-    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile)
+
+    h.setrelheap()
+    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile, datafile, h)
 
     #print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
