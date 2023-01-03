@@ -13,6 +13,9 @@ from guppy import hpy
 h = hpy()
 
 
+################################################################################
+# Set up file system
+
 # Open workfile
 workfile = open( 'workfile.txt', 'w', encoding = 'utf-8')
 datafile = open( 'datafile.txt', 'w', encoding = 'utf-8')
@@ -30,30 +33,31 @@ def usage(interactive_mode):
 # Enforces proper call of convert.py
 if interactive_mode:
     if len(sys.argv) < 4:
-        print("\tYou did not provide the proper number of file names")
-        workfile.write("\tYou did not provide the proper number of file names")
+        print("\tScript invoked with incorrect number of command line arguments")
+        workfile.write("\tScript invoked with incorrect number of command line arguments")
         usage(interactive_mode)
         sys.exit(1)
 else:
     if len(sys.argv) < 3:
-        print("\tYou did not provide the proper number of file names")
-        workfile.write("\tYou did not provide the proper number of file names")
+        print("\tScript invoked with incorrect number of command line arguments")
+        workfile.write("\tScript invoked with incorrect number of command line arguments")
         usage(interactive_mode)
         sys.exit(1)
 
-
-################################################################################
-# Initialize some variables
 if interactive_mode:
     original_file = sys.argv[2]
     new_file = sys.argv[3]
-    print("Initializing...\n\tReading from " + sys.argv[2] + "\n\tWriting to " + sys.argv[3] + "\n")
-    workfile.write("Initializing...\n\tReading from " + sys.argv[2] + "\n\tWriting to " + sys.argv[3] + "\n\n")
+    print(f"Initializing...\n\tReading from {sys.argv[2]} \n\tWriting to {sys.argv[3]} \n")
+    workfile.write(f"Initializing...\n\tReading from {sys.argv[2]} \n\tWriting to {sys.argv[3]} \n\n")
 else:
     original_file = sys.argv[1]
     new_file = sys.argv[2]
-    print("Initializing...\n\tReading from " + sys.argv[1] + "\n\tWriting to " + sys.argv[2] + "\n")
-    workfile.write("Initializing...\n\tReading from " + sys.argv[1] + "\n\tWriting to " + sys.argv[2] + "\n\n")
+    print(f"Initializing...\n\tReading from {sys.argv[1]} \n\tWriting to {sys.argv[2]} \n")
+    workfile.write(f"Initializing...\n\tReading from {sys.argv[1]} \n\tWriting to {sys.argv[2]} \n\n")
+
+
+################################################################################
+# Initialize variables
 
 network = None
 model = None
@@ -64,7 +68,7 @@ important_vars = list()
 # For interactive mode, variables are input at runtime
 # for non-interactive mode, hardcode variables in "else" below
 if interactive_mode:
-    check = (input("\tAdd a target varialbe?: ").lower().startswith('y'))
+    check = (input("\tAdd a target varialbe? (yes/no): ").lower().startswith('y'))
     while check:
         target_vars.append(momba_model.expressions.Name(input("\t    name: ")))
         check = (input("\tAdd another varialbe?: ").lower().startswith('y'))
@@ -75,7 +79,7 @@ if interactive_mode:
     print("")
     workfile.write("\n")
 else: 
-    target_vars = [momba_model.expressions.Name('optimalRuns')]
+    target_vars = [momba_model.expressions.Name('z')]
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')
@@ -105,12 +109,14 @@ for init_state in model.initial_locations:
 print(f'\tInitial state: {init_state}\n')
 workfile.write(f'\tInitial state: {init_state}\n\n')
 
-print("\tInitialization complete\n")
-workfile.write("\tInitialization complete\n\n")
+print("\tInitialization complete\n________________________________\n")
+workfile.write("\tInitialization complete\n________________________________\n\n")
 
 
 ################################################################################
-# Find target locations, variables, and back edges of model 
+# Collect information from model
+
+# Find target locations, traget variables, and back edges of model 
 back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
 
 # other_vars is the set of variables that aren't target or important vars
