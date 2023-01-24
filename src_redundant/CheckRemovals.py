@@ -6,11 +6,9 @@ from momba import model as momba_model
 from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
+from TotalSize import total_size
 
-#from guppy import hpy
-#h = hpy()
-
-def evaluate_possibilities(location, back_edges, incoming_state, initial_state, target_location, depth, workfile):
+def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map, depth, workfile, datafile, h):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -25,11 +23,32 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
     # Were destinations able to lead to different locations, the probability would need to be readjusted
     # considering the "dead" path
 
-    # Print utilization at beginning of each call
-    print(f'\t--Recursion depth {depth}')
-    #print(f'\t\tLocations solved: {len(location_value_map)}')
-    workfile.write(f'\t--Recursion depth {depth}\n')
-    #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+    # Print utilization for optimization
+    # Occurs at the beginning and end of each recursion
+    # See code block following recursive call 
+
+    print(f'\tRecursion depth {depth}')
+    print(f'\t\tLocations solved: {len(location_value_map)}')
+
+    workfile.write(f'\tRecursion depth {depth}\n')
+    workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+    #workfile.write(f'\t\tBackwards_vals: - bytes\n')
+    workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
+    workfile.write(f'\t\tFinal_vals: - bytes\n\n')
+    workfile.write(f'\t\tHeap summary: by type {h.heap()} bytes\n\n')
+    workfile.write(f'\t\tHeap summary: by referrer {h.heap().byrcs}\n\n')
+    workfile.write(f'\t\tHeap summary: largest referrer {h.heap().byrcs[0].byclodo} \n\n\n')
+
+    datafile.write(f'{depth}\t{h.heap()[0].size}\t{h.heap().byrcs[0].size}\t{h.heap().byrcs[0].byclodo[0].size}\n')
+
+    if location in visited:
+        # The incoming state is the default value of the variables.
+        # We recurse backwards through the edges until we hit locations we have already seen.
+        # Then we start with the incoming state and build the variable values as the recursion is unwound
+        return [incoming_state]
+    else:
+        new_visited = set(visited)
+        new_visited.add(location)
 
     if location in back_edges:
         final_vals = list()
@@ -51,41 +70,44 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
                 # if they all go back to the target location instead of just one edge doing it.
                 break
 
-            # Recurse down each path all the way first before doing the evaluations.
-            # This allows the current variable values to be accesible when evaluating the proper
-            # guards that should be considered true
-            
-            #backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth + 1, workfile)
-            #location_value_map[dest.name] = backwards_vals
+            if dest.name in location_value_map:
+                backwards_vals = location_value_map[dest.name]
+            else:
+                # Recurse down each path all the way first before doing the evaluations.
+                # This allows the current variable values to be accesible when evaluating the proper
+                # guards that should be considered true
+                backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth+1, workfile, datafile, h)
+                location_value_map[dest.name] = backwards_vals
+                #print(backwards_vals)
+                print(f'\tRecursion depth {depth}')
+                print(f'\t\tLocations solved: {len(location_value_map)}')
+                workfile.write(f'\tRecursion depth {depth}\n')
+                workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+                workfile.write(f'\t\tLocation_value_map id: {id(location_value_map)}\n')
+                #workfile.write(f'\t\tBackwards_vals: - bytes\n')
+                workfile.write(f'\t\tLocation_value_map: {total_size(location_value_map)} bytes\n')
+                workfile.write(f'\t\tFinal_vals: - bytes\n\n')
+                workfile.write(f'\t\tHeap summary: by type {h.heap()} bytes\n\n')
+                workfile.write(f'\t\tHeap summary: by referrer {h.heap().byrcs}\n\n')
+                workfile.write(f'\t\tHeap summary: largest referrer {h.heap().byrcs[0].byclodo} \n\n\n')
+                datafile.write(f'{depth}\t{h.heap()[0].size}\t{h.heap().byrcs[0].size}\t{h.heap().byrcs[0].byclodo[0].size}\n')
 
-            location_values = evaluate_possibilities(dest, back_edges, incoming_state, initial_state, target_location, depth + 1, workfile)
-            
-            #print(backwards_vals)
-            #if len(location_value_map) > 42:
-            #    print(h.heap())
-            print(f'\t++Recursion depth {depth}')
-            #print(f'\t\tLocations solved: {len(location_value_map)}')
-            workfile.write(f'\t++Recursion depth {depth}\n')
-            #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
-            
-
-            # For each possible set of variable values
-            for val in location_values:        
+            # val represents a Variable_State object in a list
+            for val in backwards_vals:        
                 ## TODO: This check guard function doesn't work in a lot of cases:
                 # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
                 # resulting in possilby multiple guards being considered as true when in reality only one can
                 # 2. If a target variable is compared to an evaluated variable, we can't say anything about the truth
                 # value of the guard. So they will all be considered true, which is faulty behavior at this point 
-
-                # TODO: want to move var_state = VariableState(val) into outer loop, but changes behavior. Why?
                 if check_guard(val.var_values, edge.guard):
+                    var_state = VariableState(val)
                     for destination in edge.destinations:
-                        var_state = VariableState(val)
                         # Apply this set of assignments to the variable values, along with the proper probability update
+                        # TODO: Assumes that each destination leads to a location on a path to the target location
                         var_state.var_values = substitute_vals(var_state.var_values, destination)
                         var_state.compound_probability(destination.probability)
                         final_vals.extend([var_state])
-                        del var_state
+            del backwards_vals
         return final_vals
 
     else:

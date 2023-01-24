@@ -10,7 +10,7 @@ from VariableState import VariableState
 #from guppy import hpy
 #h = hpy()
 
-def evaluate_possibilities(location, back_edges, incoming_state, initial_state, target_location, depth, workfile):
+def evaluate_possibilities(location, back_edges, incoming_state, visited, initial_state, target_location, location_value_map, depth, workfile):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -26,10 +26,19 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
     # considering the "dead" path
 
     # Print utilization at beginning of each call
-    print(f'\t--Recursion depth {depth}')
-    #print(f'\t\tLocations solved: {len(location_value_map)}')
-    workfile.write(f'\t--Recursion depth {depth}\n')
-    #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+    print(f'\tRecursion depth {depth}')
+    print(f'\t\tLocations solved: {len(location_value_map)}')
+    workfile.write(f'\tRecursion depth {depth}\n')
+    workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+
+    if location in visited:
+        # The incoming state is the default value of the variables.
+        # We recurse backwards through the edges until we hit locations we have already seen.
+        # Then we start with the incoming state and build the variable values as the recursion is unwound
+        return [incoming_state]
+    else:
+        new_visited = set(visited)
+        new_visited.add(location)
 
     if location in back_edges:
         final_vals = list()
@@ -51,26 +60,31 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
                 # if they all go back to the target location instead of just one edge doing it.
                 break
 
-            # Recurse down each path all the way first before doing the evaluations.
-            # This allows the current variable values to be accesible when evaluating the proper
-            # guards that should be considered true
-            
-            #backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth + 1, workfile)
-            #location_value_map[dest.name] = backwards_vals
+            #if dest.name in location_value_map:
+            #    backwards_vals = location_value_map[dest.name]
+            #else:
 
-            location_values = evaluate_possibilities(dest, back_edges, incoming_state, initial_state, target_location, depth + 1, workfile)
-            
-            #print(backwards_vals)
-            #if len(location_value_map) > 42:
-            #    print(h.heap())
-            print(f'\t++Recursion depth {depth}')
-            #print(f'\t\tLocations solved: {len(location_value_map)}')
-            workfile.write(f'\t++Recursion depth {depth}\n')
-            #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
+            if dest.name not in location_value_map:
+                # Recurse down each path all the way first before doing the evaluations.
+                # This allows the current variable values to be accesible when evaluating the proper
+                # guards that should be considered true
+                
+                #backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth + 1, workfile)
+                #location_value_map[dest.name] = backwards_vals
+
+                location_value_map[dest.name] = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth + 1, workfile)
+                
+                #print(backwards_vals)
+                #if len(location_value_map) > 42:
+                #    print(h.heap())
+                print(f'\tRecursion depth {depth}')
+                print(f'\t\tLocations solved: {len(location_value_map)}')
+                workfile.write(f'\tRecursion depth {depth}\n')
+                workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
             
 
             # For each possible set of variable values
-            for val in location_values:        
+            for val in location_value_map[dest.name]:        
                 ## TODO: This check guard function doesn't work in a lot of cases:
                 # 1. If the variables haven't been fully evaluated yet, it may not return false when expected,
                 # resulting in possilby multiple guards being considered as true when in reality only one can
