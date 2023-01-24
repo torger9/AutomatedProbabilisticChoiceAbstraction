@@ -95,7 +95,7 @@ with open(original_file, encoding='utf-8-sig') as jani_file:
     network = jani.load_model(jani_string)
     model = network.instances.pop().automaton
 
-# Enforce exisance of a single initial state
+# Enforce existance of a single initial state
 # TODO: Can multiple initial states work at all?
 if (len(model.initial_locations) > 1):
     print("\tCan't do multiple initial states yet")
@@ -116,12 +116,11 @@ workfile.write("\tInitialization complete\n________________________________\n\n"
 ################################################################################
 # Collect information from model
 
-# Find target locations, traget variables, and back edges of model 
-back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
+# Find back_edges, target locations, and all variables in model (filter varialbes in next step)
+back_edges, target_locs, other_vars = model_info(model, target_vars, initial_state, workfile)
 
 # other_vars is the set of variables that aren't target or important vars
-all_vars.difference_update(target_vars + important_vars)
-other_vars = all_vars
+other_vars.difference_update(target_vars + important_vars)
 
 # Dictionary maps each target location to its distribution of variable values
 # key: target location, value: list(VariableState objects) 
@@ -148,28 +147,23 @@ for i, target in enumerate(target_locs):
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
-    if i+1 != 8:
-        continue
 
     location_value_map = dict()
     print("Evaluating possibilities...")
     workfile.write("Evaluating possibilities...\n")
 
     h.setrelheap()
-    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile, datafile, h)
+    final_vals_map[target] = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile, datafile, h)
 
     #print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
 
-    for val in final_vals:
+    for val in final_vals_map[target]:
         cannot_remove_set.update(val.cannot_resolve_set())
-    
-    
-
-
-    # Store this set of possibilities
-    final_vals_map[target] = final_vals
+    # put this into the call for evaluate possibilities
+    ## Store this set of possibilities
+    #final_vals_map[target] = final_vals
 
 
 cannot_remove_set.update(target_vars)
