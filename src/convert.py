@@ -7,7 +7,7 @@ from Dependancies import get_location_dependancies
 from CheckRemovals import evaluate_possibilities
 from VariableState import VariableState
 from NewModel import make_new_model
-
+from guppy import hpy
 
 # Open work and data files
 workfile = open( 'workfile.txt', 'w', encoding = 'utf-8')
@@ -71,8 +71,8 @@ if interactive_mode:
     print("")
     workfile.write("\n")
 else: 
-    target_vars = [momba_model.expressions.Name('optimalRuns')]
-#    target_vars = [momba_model.expressions.Name('z')]
+#    target_vars = [momba_model.expressions.Name('optimalRuns')]
+    target_vars = [momba_model.expressions.Name('z')]
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')
@@ -102,6 +102,7 @@ workfile.write(f'\tInitial state: {init_state}\n\n')
 
 print("\tInitialization complete\n")
 workfile.write("\tInitialization complete\n\n")
+
 
 ################################################################################
 # Find target locations, variables, and back edges of model 
@@ -138,11 +139,13 @@ for i, target in enumerate(target_locs):
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
 
-    #location_value_map = dict()
     print("Evaluating possibilities...")
     workfile.write("Evaluating possibilities...\n")
-
-    final_vals_map[target] = evaluate_possibilities(target, back_edges, VariableState(var_values), initial_state, target, 0, workfile) 
+   
+    heapobj = hpy()
+    heapobj.setref()
+    initialheap = heapobj.heap()
+    final_vals_map[target] = evaluate_possibilities(target, back_edges, VariableState(var_values), initial_state, target, 0, workfile, datafile, set(), initialheap, heapobj) 
 
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction

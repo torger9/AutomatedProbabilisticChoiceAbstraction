@@ -1,7 +1,0 @@
-> /home/torger9/gitclones/pca_new/src/convert.py(2)<module>()
--> from momba import jani
-(Pdb) (Pdb) (Pdb) --KeyboardInterrupt--
-(Pdb) *** SyntaxError: invalid syntax
-(Pdb) --KeyboardInterrupt--
-(Pdb) *** SyntaxError: invalid syntax
-(Pdb) 

@@ -7,10 +7,7 @@ from momba.model.expressions import *
 from momba.model.operators import *
 from VariableState import VariableState
 
-#from guppy import hpy
-#h = hpy()
-
-def evaluate_possibilities(location, back_edges, incoming_state, initial_state, target_location, depth, workfile):
+def evaluate_possibilities(location, back_edges, incoming_state, initial_state, target_location, depth, workfile, datafile, visited, initialheap, heapobj):
     """
     This function recursively searches backward from a target location, evaluation all possible variable values
     in the target location
@@ -26,9 +23,9 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
     # considering the "dead" path
 
     # Print utilization at beginning of each call
-    print(f'\t--Recursion depth {depth}')
-    #print(f'\t\tLocations solved: {len(location_value_map)}')
-    workfile.write(f'\t--Recursion depth {depth}\n')
+    # print(f'\t--Recursion depth {depth}')
+    # print(f'\t\tLocations solved: {len(location_value_map)}')
+    #workfile.write(f'\t++Recursion depth {depth}\n')
     #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
 
     if location in back_edges:
@@ -58,16 +55,63 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
             #backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map, depth + 1, workfile)
             #location_value_map[dest.name] = backwards_vals
 
-            location_values = evaluate_possibilities(dest, back_edges, incoming_state, initial_state, target_location, depth + 1, workfile)
+            location_values = evaluate_possibilities(dest, back_edges, incoming_state, initial_state, target_location, depth + 1, workfile, datafile, visited, initialheap, heapobj)
+
+            # print memory usage data to datafile for processing
+            # format : (locations solved) (total heap size) 
+            #          (size difference) (objects created)  (unaccessable)
+            #          (largest 3 objects with names)(largest created object and name)
             
-            #print(backwards_vals)
-            #if len(location_value_map) > 42:
-            #    print(h.heap())
-            print(f'\t++Recursion depth {depth}')
-            #print(f'\t\tLocations solved: {len(location_value_map)}')
-            workfile.write(f'\t++Recursion depth {depth}\n')
-            #workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
-            
+            heapsnap = heapobj.heap()
+            stats = heapsnap.diff(initialheap)
+            datafile.write(f'{len(visited)}\t{heapsnap.size}\t{stats.size}\t{stats.count}\t{heapobj.heapu().size}\t')
+            for row in range(0,len(heapsnap),1):
+                if row > 2:
+                    break
+                datafile.write(f'{heapsnap[row].size}\t{heapsnap[row].kind}\t')
+            if len(heapsnap) < 3:
+                datafile.write(f'{0}\tN\A\t')
+            if len(heapsnap) < 2:
+                datafile.write(f'{0}\tN\A\t')
+            if len(heapsnap) < 1:
+                datafile.write(f'{0}\tN\A\t')
+            if len(stats) < 1:
+                datafile.write(f'{0}\tN\A\t')
+            else:
+                datafile.write(f'{heapsnap[0].size}\t{heapsnap[0].kind}\t')
+            datafile.write("\n")
+
+            if location.name not in visited:
+                visited.add(location.name)
+                
+                # print status to console
+                print(f'\tlocations solved : {len(visited)} ')
+                
+                # print memory usage data to workfile for review
+                workfile.write(f'\tlocations solved : {len(visited)} \n')
+                workfile.write(f'\t\tHeap Size : {convertSize(heapsnap.size)}\n')
+                workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
+                workfile.write('\t\t\t  N/A  N/A%10s%40s\n' % (convertSize(heapobj.iso(final_vals).size),'final_vals'))
+                #for row in list(heapsnap.stat.get_rows())[:5]:
+                #    workfile.write("%5d%5d%8d%30s\n" %(row.index, row.count, convertSize(row.size), row.name))
+                for n in range(0,len(heapsnap),1):
+                    if n > 4:
+                        break
+                    workfile.write("\t\t\t%5d%5d%10s%400s\n" %(n, heapsnap[n].count, convertSize(heapsnap[n].size), heapsnap[n].kind))
+                
+                workfile.write('\n\t\tChanges to heap since initial call\n')
+                workfile.write(f'\t\t\tTotal objects created : {stats.count}\n')
+                workfile.write(f'\t\t\tTotal size difference : {convertSize(stats.size)}\n')
+                workfile.write(f'\t\t\tNumber of entries : {stats.numrows}\n')
+                workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
+                for count, row in enumerate(stats.get_rows()):
+                    if count > 4:
+                        break
+                    workfile.write("\t\t\t%5d%5d%10s%40s\n" %(row.index, row.count, convertSize(row.size), row.name))
+
+                workfile.write(f'\n\t\tUnaccessable memory: {convertSize(heapobj.heapu().size)}\n')
+            del stats
+            del heapsnap
 
             # For each possible set of variable values
             for val in location_values:        
@@ -92,6 +136,20 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
         # There are no backward edges, must be a base location
         return [incoming_state]
 
+def convertSize(size):
+    # placeholder
+    size_string = "a"
+
+    if size < 1024:
+        size_string = "%.0f  B" %(size)
+    elif (size >= 1024) and (size < (1024*1024)):
+        size_string = "%.2f KB" %(size/1024)
+    elif (size >= (1024*1024)) and (size < (1024*1024*1024)):
+        size_string = "%.2f MB" %(size/(1024*1024)) 
+    else:
+        size_string = "%.2f GB" %(size/(1024*1024*1024))
+
+    return size_string
 
 def substitute_vals(var_values, destination):
     new_var_values = var_values

@@ -7,37 +7,33 @@ from Dependancies import get_location_dependancies
 from CheckRemovals import evaluate_possibilities
 from VariableState import VariableState
 from NewModel import make_new_model
-from TotalSize import total_size
-
 from guppy import hpy
-h = hpy()
 
-
-# Open workfile
+# Open work and data files
 workfile = open( 'workfile.txt', 'w', encoding = 'utf-8')
 datafile = open( 'datafile.txt', 'w', encoding = 'utf-8')
 
-# Desigate paramaters interactively or from initial call
+# Desigate -i option for interactive mode
 interactive_mode = (sys.argv[1] == '-i')
 
-# Function prints proper call of convert.py to screen
+# Define proper function call
 def usage(interactive_mode):
     print("\tUsage:")
     print("\tpython convert.py [-i] /path/to/original/jani/file /path/for/converted/jani")
     workfile.write("\tUsage:")
     workfile.write("\tpython convert.py [-i] /path/to/original/jani/file /path/for/converted/jani")
 
-# Enforces proper call of convert.py
+# Enforce proper call of convert.py
 if interactive_mode:
     if len(sys.argv) < 4:
         print("\tYou did not provide the proper number of file names")
-        workfile.write("\tYou did not provide the proper number of file names")
+        workfile.write("\tYou did not provide the proper number of file names\n")
         usage(interactive_mode)
         sys.exit(1)
 else:
     if len(sys.argv) < 3:
         print("\tYou did not provide the proper number of file names")
-        workfile.write("\tYou did not provide the proper number of file names")
+        workfile.write("\tYou did not provide the proper number of file names\n")
         usage(interactive_mode)
         sys.exit(1)
 
@@ -80,10 +76,9 @@ else:
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')
-workfile.write(f'\tTarget variables: {target_vars}\n')
+workfile.write(f'\tTarget variables: {target_vars} {type(target_vars)}\n')
 print(f'\tImportant variables: {important_vars}\n')
 workfile.write(f'\tImportant variables: {important_vars}\n\n')
-
 
 # Load the automatan from the jani file
 with open(original_file, encoding='utf-8-sig') as jani_file:
@@ -95,8 +90,7 @@ with open(original_file, encoding='utf-8-sig') as jani_file:
 # Enforce existance of a single initial state
 # TODO: Can multiple initial states work at all?
 if (len(model.initial_locations) > 1):
-    print("\tCan't do multiple initial states yet")
-    workfile.write("\tCan't do multiple initial states yet\n")
+    print("Can't do multiple initial states yet")
     sys.exit(1)
 
 # Obtain initial state from model
@@ -112,16 +106,15 @@ workfile.write("\tInitialization complete\n\n")
 
 ################################################################################
 # Find target locations, variables, and back edges of model 
+#back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
 back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
 
-# other_vars is the set of variables that aren't target or important vars
-# TODO remove one of these 
-
+# Other_vars is the set of variables that aren't target or other important vars
 all_vars.difference_update(target_vars + important_vars)
 other_vars = all_vars
 
-# Dictionary maps each target location to its distribution of variable values
-# key: target location, value: list(VariableState objects) 
+# Dictionary maps each target location to its distributions of variable values
+# key: target location, value: list(VariableState objects) *SET*
 final_vals_map = dict()
 
 
@@ -145,22 +138,27 @@ for i, target in enumerate(target_locs):
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
-
-    location_value_map = dict()
+    
     print("Evaluating possibilities...")
     workfile.write("Evaluating possibilities...\n")
+    location_value_map = dict()
+    
+    heapobj = hpy()
+    heapobj.setref()
+    initialheap = heapobj.heap()
+    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile, datafile, set(), initialheap, heapobj)
+    #final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map) 
 
-    h.setrelheap()
-    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map, 0, workfile, datafile, h)
-
-    #print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
 
     for val in final_vals:
         cannot_remove_set.update(val.cannot_resolve_set())
-    # put this into the call for evaluate possibilities
-    ## Store this set of possibilities
+    
+    
+
+
+    # Store this set of possibilities
     final_vals_map[target] = final_vals
 
 
