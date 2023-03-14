@@ -1,0 +1,220 @@
+Initializing...
+	Reading from models/central-router-predicate-abstract.jani
+	Writing to central_router_slow.jani
+
+	Target variables: [Name(identifier='optimalRuns')] <class 'list'>
+	Important variables: [Name(identifier='clk')]
+
+	Initial state: Location(name='loc_1', progress_invariant=None, transient_values=frozenset())
+
+	Initialization complete
+
+Collecting model info...
+	Exploring location 1
+	Exploring location 2
+	Exploring location 3
+	Exploring location 4
+	Exploring location 5
+	Exploring location 6
+	Exploring location 7
+	Exploring location 8
+	Exploring location 9
+	Exploring location 10
+	Exploring location 11
+	Exploring location 12
+	Exploring location 13
+	Exploring location 14
+	Exploring location 15
+	Exploring location 16
+	Exploring location 17
+	Exploring location 18
+	Exploring location 19
+	Exploring location 20
+	Exploring location 21
+	21 total locations
+
+	Model info collected
+
+Target location 1 of 1
+Evaluating possibilities...
+	locations solved : 1 
+		Heap Size : 14.41 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   20  12.71 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1   20   1.12 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    2    1    216  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    3    1    144  B                                                                                                                                                                                                                                                                                                                                                                                                        function
+			    4    1    104  B                                                                                                                                                                                                                                                                                                                                                                             dict of VariableState.VariableState
+
+		Changes to heap since initial call
+			Total objects created : 42
+			Total size difference : 13.80 KB
+			Number of entries : 5
+			Index Count     Size                  Object Name
+			    0   19  12.32 KB                         types.FrameType
+			    1   20   1.12 KB                                    list
+			    2    1    216  B                                     set
+			    3    1    104  B     dict of VariableState.VariableState
+			    4    1     48  B             VariableState.VariableState
+
+		Unaccessable memory: 1.06 KB
+	locations solved : 2 
+		Heap Size : 20.98 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   19  12.06 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1   22   3.75 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    2    1   2.22 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    3   20   1.25 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4    8    576  B                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+
+		Changes to heap since initial call
+			Total objects created : 79
+			Total size difference : 20.32 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   18  11.67 KB                         types.FrameType
+			    1   22   3.75 KB                                     str
+			    2    1   2.22 KB                         dict (no owner)
+			    3   20   1.19 KB                                    list
+			    4    7    504  B                        builtins.weakref
+
+		Unaccessable memory: 1.00 KB
+	locations solved : 3 
+		Heap Size : 25.01 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   18  11.41 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1   44   7.50 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    2    1   2.22 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    3   19   1.26 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4   16   1.12 KB                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+
+		Changes to heap since initial call
+			Total objects created : 112
+			Total size difference : 24.35 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   17  11.02 KB                         types.FrameType
+			    1   44   7.50 KB                                     str
+			    2    1   2.22 KB                         dict (no owner)
+			    3   19   1.20 KB                                    list
+			    4   15   1.05 KB                        builtins.weakref
+
+		Unaccessable memory: 960  B
+	locations solved : 4 
+		Heap Size : 24.96 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   17  10.77 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1    2   4.44 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    2   41   3.78 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    3   29   2.04 KB                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+			    4   19   1.66 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+
+		Changes to heap since initial call
+			Total objects created : 134
+			Total size difference : 24.27 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   16  10.38 KB                         types.FrameType
+			    1    2   4.44 KB                         dict (no owner)
+			    2   41   3.78 KB                                     str
+			    3   28   1.97 KB                        builtins.weakref
+			    4   19   1.51 KB                                    list
+
+		Unaccessable memory: 896  B
+	locations solved : 5 
+		Heap Size : 36.09 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   16  10.12 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1   98   9.88 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    2    4   8.88 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    3   18   2.05 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4   29   2.04 KB                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+
+		Changes to heap since initial call
+			Total objects created : 195
+			Total size difference : 34.99 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   98   9.88 KB                                     str
+			    1   15   9.73 KB                         types.FrameType
+			    2    4   8.88 KB                         dict (no owner)
+			    3   18   2.05 KB                                    list
+			    4   28   1.97 KB                        builtins.weakref
+
+		Unaccessable memory: 832  B
+	locations solved : 6 
+		Heap Size : 54.71 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0  195  18.67 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    8  17.75 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    2   15   9.47 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    3   17   3.05 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4   29   2.04 KB                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+
+		Changes to heap since initial call
+			Total objects created : 302
+			Total size difference : 54.11 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0  195  18.67 KB                                     str
+			    1    8  17.75 KB                         dict (no owner)
+			    2   14   9.08 KB                         types.FrameType
+			    3   17   3.05 KB                                    list
+			    4   28   1.97 KB                        builtins.weakref
+
+		Unaccessable memory: 768  B
+	locations solved : 7 
+		Heap Size : 81.99 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   17  37.72 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    1  337  24.03 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    2   14   8.82 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    3   16   4.38 KB                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4   29   2.04 KB                                                                                                                                                                                                                                                                                                                                                                                                builtins.weakref
+
+		Changes to heap since initial call
+			Total objects created : 469
+			Total size difference : 81.39 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   17  37.72 KB                         dict (no owner)
+			    1  337  24.03 KB                                     str
+			    2   13   8.43 KB                         types.FrameType
+			    3   16   4.31 KB                                    list
+			    4   28   1.97 KB                        builtins.weakref
+
+		Unaccessable memory: 704  B
+	locations solved : 8 
+		Heap Size : 348.61 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0  136 301.75 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    1  137  13.91 KB                                                                                                                                                                                                                                                                                                                                                                             dict of VariableState.VariableState
+			    2  100  10.91 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    3   13   8.17 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    4  137   6.42 KB                                                                                                                                                                                                                                                                                                                                                                                     VariableState.VariableState
+
+		Changes to heap since initial call
+			Total objects created : 587
+			Total size difference : 348.01 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0  136 301.75 KB                         dict (no owner)
+			    1  137  13.91 KB     dict of VariableState.VariableState
+			    2  100  10.91 KB                                     str
+			    3   12   7.78 KB                         types.FrameType
+			    4  137   6.42 KB             VariableState.VariableState
+
+		Unaccessable memory: 640  B
+	locations solved : 9 
+		Heap Size : 2.56 MB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0 1088   2.36 MB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)

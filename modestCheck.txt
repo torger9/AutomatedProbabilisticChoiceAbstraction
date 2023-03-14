@@ -1,0 +1,40 @@
+﻿Peak memory usage: 100 MB
+Analysis results for central-router-predicate-abstract.modest
+
++ State space exploration
+  State size:  48 bytes B
+  States:      2141 
+  Transitions: 2141 
+  Branches:    2396 
+  Rate:        46543 states/s 
+  Time:        0.1 s
+
++ Property optimalR
+  Probability: 0.421875 
+  Bounds:      [0.421875, 0.421875] 
+  Time:        0.1 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property Pr1
+  Probability: 1 
+  Bounds:      [1, 1] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property Deliveredflits
+  Probability: 1 
+  Bounds:      [1, 1] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
