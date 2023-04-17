@@ -1,0 +1,74 @@
+option "dtmc";
+
+
+int x = 1;
+int y = 1;
+int z = 1;
+int clk = 0;
+int done = 0;
+
+action tick;
+
+property pn1 = Pmax(<>( (clk == 4) && (z==-1)));
+property p0 = Pmax(<>( (clk == 4) && (z==0)));
+property p1 = Pmax(<>( (clk == 4) && (z==1)));
+property p2 = Pmax(<>( (clk == 4) && (z==2)));
+
+process Clock() {
+
+	tick {= clk += 1 =};
+
+	if (done != 1) {
+		Clock()
+	}
+    else {
+        stop
+    }
+
+}
+
+process Top() {
+
+    tick palt {
+        :(0.7): {==}
+        :(0.3): {= x = x + 1, y = y + 1 =}
+    };
+
+
+    if(x <= y) {
+        tick palt {
+            :(0.6): {= y = y - 1 =}
+            :(0.4): {= x = x + 1, y = y - 2, z = z + 1 =}
+        }
+    }
+    else {
+        tick palt {
+            :(0.5): {= x = x - 1 =}
+            :(0.5): {= x = x - 2, y = y + 1, z = z - 1 =}
+        }
+    };
+
+
+    if(x == y) {
+        tick palt {
+            :(0.1): {= x = x + 1, y = y + 1, z = z + 1, done = 1 =}
+            :(0.9): {==}
+        }
+    }
+    else {
+        tick palt {
+            :(0.2): {= x = x - 1, y = y - 1, z = z - 1 =}
+            :(0.8): {==}
+        }
+		
+		tick {= done = 1 =}
+    };
+
+	Top()
+
+}
+
+par{
+    :: 	Top()
+    ::  Clock()
+    }
