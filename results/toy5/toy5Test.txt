@@ -1,0 +1,50 @@
+﻿Peak memory usage: 54 MB
+Analysis results for toy5.modest
+
++ State space exploration
+  State size:  24 bytes B
+  States:      25 
+  Transitions: 25 
+  Branches:    32 
+  Rate:        781 states/s 
+  Time:        0.0 s
+
++ Property pn1
+  Probability: 0 
+  Bounds:      [0, 0] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  1 
+    Time:        0.0 s
+
++ Property p0
+  Probability: 0.18600000000000003 
+  Bounds:      [0.18600000000000003, 0.18600000000000003] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property p1
+  Probability: 0.548 
+  Bounds:      [0.548, 0.548] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property p2
+  Probability: 0.266 
+  Bounds:      [0.266, 0.266] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s

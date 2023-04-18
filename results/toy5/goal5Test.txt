@@ -1,0 +1,50 @@
+﻿Peak memory usage: 54 MB
+Analysis results for goal5.modest
+
++ State space exploration
+  State size:  16 bytes B
+  States:      21 
+  Transitions: 21 
+  Branches:    32 
+  Rate:        656 states/s 
+  Time:        0.0 s
+
++ Property pn1
+  Probability: 0.031634615384615386 
+  Bounds:      [0.031634615384615386, 0.031634615384615386] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property p0
+  Probability: 0.33858653846153847 
+  Bounds:      [0.33858653846153847, 0.33858653846153847] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property p1
+  Probability: 0.49619230769230777 
+  Bounds:      [0.49619230769230777, 0.49619230769230777] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
+
++ Property p2
+  Probability: 0.12747115384615387 
+  Bounds:      [0.12747115384615387, 0.12747115384615387] 
+  Time:        0.0 s
+
+  + Value iteration
+    Final error: 0 
+    Iterations:  2 
+    Time:        0.0 s
