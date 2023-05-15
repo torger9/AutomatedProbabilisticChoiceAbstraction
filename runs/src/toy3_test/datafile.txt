@@ -1,0 +1,4 @@
+0	2528	1912	8	0	1752	types.FrameType	216	set	200	list	1752	types.FrameType	
+1	4972	4356	38	656	2020	str	1080	types.FrameType	464	dict (no owner)	2020	str	
+2	9918	9302	84	720	4098	str	1752	types.FrameType	1160	dict (no owner)	4098	str	
+2	9810	9194	89	656	4422	str	1392	dict (no owner)	1080	types.FrameType	4422	str	

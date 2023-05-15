@@ -1,0 +1,6 @@
+0	2528	1912	8	0	1752	types.FrameType	216	set	200	list	1752	types.FrameType	
+1	6540	5924	50	656	2020	str	1392	dict (no owner)	1080	types.FrameType	2020	str	
+2	11516	10900	97	720	4100	str	2088	dict (no owner)	1752	types.FrameType	4100	str	
+2	11410	10794	102	656	4426	str	2320	dict (no owner)	1144	dict of VariableState.VariableState	4426	str	
+2	12880	12264	109	720	4720	str	2552	dict (no owner)	1752	types.FrameType	4720	str	
+2	12855	12239	114	656	5047	str	2784	dict (no owner)	1352	dict of VariableState.VariableState	5047	str	

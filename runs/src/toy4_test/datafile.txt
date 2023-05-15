@@ -1,0 +1,21 @@
+0	3256	2640	10	64	2424	types.FrameType	256	list	216	set	2424	types.FrameType	
+1	5704	5088	40	720	2024	str	1752	types.FrameType	464	dict (no owner)	2024	str	
+2	10650	10034	86	784	4102	str	2424	types.FrameType	1160	dict (no owner)	4102	str	
+2	10544	9928	91	720	4428	str	1752	types.FrameType	1392	dict (no owner)	4428	str	
+2	10517	9901	97	656	4701	str	1392	dict (no owner)	1080	types.FrameType	4701	str	
+3	15552	14936	137	784	6800	str	2424	types.FrameType	2088	dict (no owner)	6800	str	
+3	15919	15303	146	720	7127	str	2552	dict (no owner)	1752	types.FrameType	7127	str	
+3	18790	18174	169	784	7454	str	3248	dict (no owner)	2424	types.FrameType	7454	str	
+3	18685	18069	174	720	7781	str	3480	dict (no owner)	1752	types.FrameType	7781	str	
+3	16348	15732	161	656	8108	str	2320	dict (no owner)	1144	dict of VariableState.VariableState	8108	str	
+3	18474	17858	170	784	8402	str	2552	dict (no owner)	2424	types.FrameType	8402	str	
+3	18953	18337	179	720	8729	str	3016	dict (no owner)	1752	types.FrameType	8729	str	
+3	21736	21120	202	784	9056	str	3712	dict (no owner)	2424	types.FrameType	9056	str	
+3	21759	21143	207	720	9383	str	3944	dict (no owner)	1872	dict of VariableState.VariableState	9383	str	
+3	19338	18722	194	656	9730	str	2784	dict (no owner)	1352	dict of VariableState.VariableState	9730	str	
+0	3592	2640	10	64	2424	types.FrameType	288	builtins.weakref	256	int	2424	types.FrameType	
+1	5284	4332	33	0	2036	str	1752	types.FrameType	288	builtins.weakref	2036	str	
+2	6963	6011	56	-64	4059	str	1080	types.FrameType	464	dict (no owner)	4059	str	
+3	12349	11397	101	64	6161	str	2424	types.FrameType	1160	dict (no owner)	6161	str	
+3	12331	11379	107	0	6487	str	1752	types.FrameType	1392	dict (no owner)	6487	str	
+3	11840	10888	109	-64	6812	str	1392	dict (no owner)	1080	types.FrameType	6812	str	

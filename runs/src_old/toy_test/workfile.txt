@@ -1,0 +1,19 @@
+Initializing...
+	Reading from models/toy.jani
+	Writing to toy_test.jani
+
+	Target variables: [Name(identifier='optimalRuns')] <class 'list'>
+	Important variables: [Name(identifier='clk')]
+
+	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
+
+	Initialization complete
+
+Collecting model info...
+	Exploring location 1
+	Exploring location 2
+	Exploring location 3
+	3 total locations
+
+	Model info collected
+
