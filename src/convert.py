@@ -71,8 +71,8 @@ if interactive_mode:
     print("")
     workfile.write("\n")
 else: 
-    target_vars = [momba_model.expressions.Name('optimalRuns')]
-#    target_vars = [momba_model.expressions.Name('z')]
+    target_vars = [momba_model.expressions.Name('z')]
+#    target_vars = [momba_model.expressions.Name('optimalRuns')]
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')

@@ -20,8 +20,10 @@ echo "Conversion to .png Complete"
 echo "Creating folder $name_no_ext"
 mkdir $name_no_ext
 echo "Moving files to $name_no_ext"
-mv $name_with_ext $name_no_ext
+mv $path_with_ext $name_no_ext
 mv $name_no_ext.dot $name_no_ext
 mv $name_no_ext.png $name_no_ext
+mv workfile.txt $name_no_ext
+mv datafile.txt $name_no_ext
 echo "Exiting script"
 echo ""

@@ -97,7 +97,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
                 for n in range(0,len(heapsnap),1):
                     if n > 4:
                         break
-                    workfile.write("\t\t\t%5d%5d%10s%400s\n" %(n, heapsnap[n].count, convertSize(heapsnap[n].size), heapsnap[n].kind))
+                    workfile.write("\t\t\t%5d%5d%10s%40s\n" %(n, heapsnap[n].count, convertSize(heapsnap[n].size), heapsnap[n].kind))
                 
                 workfile.write('\n\t\tChanges to heap since initial call\n')
                 workfile.write(f'\t\t\tTotal objects created : {stats.count}\n')
@@ -109,7 +109,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
                         break
                     workfile.write("\t\t\t%5d%5d%10s%40s\n" %(row.index, row.count, convertSize(row.size), row.name))
 
-                workfile.write(f'\n\t\tUnaccessable memory: {convertSize(heapobj.heapu().size)}\n')
+                workfile.write(f'\n\t\tInaccessible memory: {convertSize(heapobj.heapu().size)}\n')
             del stats
             del heapsnap
 
