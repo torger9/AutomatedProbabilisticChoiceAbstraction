@@ -1,6 +1,6 @@
 Initializing...
 	Reading from models/toy.jani
-	Writing to toy_test.jani
+	Writing to test.jani
 
 	Target variables: [Name(identifier='z')] <class 'list'>
 	Important variables: [Name(identifier='clk')]
@@ -17,7 +17,7 @@ Collecting model info...
 
 	Model info collected
 
-Target location 1 of 1
+Target location 1 of 1: loc_5 || loc_5
 Evaluating possibilities...
 	Recursion depth 0
 		Locations solved: 0

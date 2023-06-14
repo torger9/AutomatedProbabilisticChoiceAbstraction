@@ -1,0 +1,21 @@
+Initializing...
+	Reading from models/toy.jani
+	Writing to test.jani
+
+	Target variables: [Name(identifier='z')] <class 'list'>
+	Important variables: [Name(identifier='clk')]
+
+	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
+
+	Initialization complete
+
+Collecting model info...
+	Exploring location 1
+	Exploring location 2
+	Exploring location 3
+	3 total locations
+
+	Model info collected
+
+Target location 1 of 1: loc_14 || loc_5
+Gathering probabilities...

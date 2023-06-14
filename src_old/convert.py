@@ -71,8 +71,8 @@ if interactive_mode:
     print("")
     workfile.write("\n")
 else: 
-    target_vars = [momba_model.expressions.Name('optimalRuns')]
-#    target_vars = [momba_model.expressions.Name('z')]
+    target_vars = [momba_model.expressions.Name('z')]
+#    target_vars = [momba_model.expressions.Name('optimalRuns')]
     important_vars = [momba_model.expressions.Name('clk')]
 
 print(f'\tTarget variables: {target_vars}')
@@ -208,10 +208,5 @@ syncs = '{"synchronise": [ "tick" ],"result": "tick"}'
 new_jani_string = new_jani_string.replace('"syncs": []', f'"syncs": [ {syncs} ]')
 
 # Export the jani to a file
-with open(new_file, 'w') as new_file:
+with open(new_file, 'w', encoding='utf-8-sig') as new_file:
     new_file.write(new_jani_string)
-
-
-
-
-

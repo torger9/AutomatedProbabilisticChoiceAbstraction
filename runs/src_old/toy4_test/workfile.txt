@@ -2,7 +2,7 @@ Initializing...
 	Reading from models/toy4.jani
 	Writing to toy4_test.jani
 
-	Target variables: [Name(identifier='optimalRuns')] <class 'list'>
+	Target variables: [Name(identifier='z')] <class 'list'>
 	Important variables: [Name(identifier='clk')]
 
 	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
@@ -19,3 +19,167 @@ Collecting model info...
 
 	Model info collected
 
+Target location 1 of 2
+Evaluating possibilities...
+	Recursion depth 0
+		Locations solved: 0
+	Recursion depth 1
+		Locations solved: 0
+	Recursion depth 2
+		Locations solved: 0
+	Recursion depth 3
+		Locations solved: 0
+	1 locations solved : 
+		Heap Size : 4.65 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0    4   2.45 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1    5   1.05 KB                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    2    8    564  B                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    3    4    240  B                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4    1    144  B                                                                                                                                                                                                                                                                                                                                                                                                        function
+
+		Changes to heap since initial call
+			Total objects created : 22
+			Total size difference : 4.05 KB
+			Number of entries : 6
+			Index Count     Size                  Object Name
+			    0    3   2.06 KB                         types.FrameType
+			    1    5   1.05 KB                                     set
+			    2    8    564  B                                     str
+			    3    4    240  B                                    list
+			    4    1    104  B     dict of VariableState.VariableState
+
+		Unaccessable memory: 64  B
+	Recursion depth 2
+		Locations solved: 1
+	2 locations solved : 
+		Heap Size : 9.91 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   36   4.78 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    3   1.77 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    2    4    864  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    3    8    576  B                                                                                                                                                                                                                                                                                                                                                                                           weakref.ReferenceType
+			    4    2    464  B                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+
+		Changes to heap since initial call
+			Total objects created : 68
+			Total size difference : 9.25 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   36   4.78 KB                                     str
+			    1    2   1.38 KB                         types.FrameType
+			    2    4    864  B                                     set
+			    3    7    504  B                   weakref.ReferenceType
+			    4    2    464  B                         dict (no owner)
+
+		Unaccessable memory: 0  B
+	Recursion depth 1
+		Locations solved: 2
+	3 locations solved : 
+		Heap Size : 16.71 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   64   8.99 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    8   1.81 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    2    2   1.08 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    3    9    936  B                                                                                                                                                                                                                                                                                                                                                                             dict of VariableState.VariableState
+			    4   11    792  B                                                                                                                                                                                                                                                                                                                                                                                           weakref.ReferenceType
+
+		Changes to heap since initial call
+			Total objects created : 127
+			Total size difference : 16.04 KB
+			Number of entries : 12
+			Index Count     Size                  Object Name
+			    0   64   8.99 KB                                     str
+			    1    8   1.81 KB                         dict (no owner)
+			    2    9    936  B     dict of VariableState.VariableState
+			    3   10    720  B                   weakref.ReferenceType
+			    4    1    704  B                         types.FrameType
+
+		Unaccessable memory: -64  B
+	Recursion depth 0
+		Locations solved: 3
+Target location 2 of 2
+Evaluating possibilities...
+	Recursion depth 0
+		Locations solved: 0
+	Recursion depth 1
+		Locations solved: 0
+	Recursion depth 2
+		Locations solved: 0
+	Recursion depth 3
+		Locations solved: 0
+	1 locations solved : 
+		Heap Size : 4.97 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0    4   2.45 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1    5   1.05 KB                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    2    8    564  B                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    3    4    288  B                                                                                                                                                                                                                                                                                                                                                                                           weakref.ReferenceType
+			    4    8    256  B                                                                                                                                                                                                                                                                                                                                                                                                             int
+
+		Changes to heap since initial call
+			Total objects created : 22
+			Total size difference : 4.05 KB
+			Number of entries : 6
+			Index Count     Size                  Object Name
+			    0    3   2.06 KB                         types.FrameType
+			    1    5   1.05 KB                                     set
+			    2    8    564  B                                     str
+			    3    4    240  B                                    list
+			    4    1    104  B     dict of VariableState.VariableState
+
+		Unaccessable memory: 64  B
+	Recursion depth 2
+		Locations solved: 1
+	2 locations solved : 
+		Heap Size : 8.69 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   36   4.78 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    3   1.77 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    2    4    864  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    3    4    288  B                                                                                                                                                                                                                                                                                                                                                                                           weakref.ReferenceType
+			    4    8    256  B                                                                                                                                                                                                                                                                                                                                                                                                             int
+
+		Changes to heap since initial call
+			Total objects created : 51
+			Total size difference : 7.77 KB
+			Number of entries : 7
+			Index Count     Size                  Object Name
+			    0   36   4.78 KB                                     str
+			    1    2   1.38 KB                         types.FrameType
+			    2    4    864  B                                     set
+			    3    4    256  B                                    list
+			    4    1    232  B                         dict (no owner)
+
+		Unaccessable memory: 0  B
+	Recursion depth 1
+		Locations solved: 2
+	3 locations solved : 
+		Heap Size : 12.77 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   64   8.99 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    2   1.08 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    2    3    696  B                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    3    3    648  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    4    4    416  B                                                                                                                                                                                                                                                                                                                                                                             dict of VariableState.VariableState
+
+		Changes to heap since initial call
+			Total objects created : 83
+			Total size difference : 11.85 KB
+			Number of entries : 7
+			Index Count     Size                  Object Name
+			    0   64   8.99 KB                                     str
+			    1    1    704  B                         types.FrameType
+			    2    3    696  B                         dict (no owner)
+			    3    3    648  B                                     set
+			    4    4    416  B     dict of VariableState.VariableState
+
+		Unaccessable memory: -64  B
+	Recursion depth 0
+		Locations solved: 3

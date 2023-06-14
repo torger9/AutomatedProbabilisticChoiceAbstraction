@@ -2,7 +2,7 @@ Initializing...
 	Reading from models/toy2.jani
 	Writing to toy2_test.jani
 
-	Target variables: [Name(identifier='optimalRuns')] <class 'list'>
+	Target variables: [Name(identifier='z')] <class 'list'>
 	Important variables: [Name(identifier='clk')]
 
 	Initial state: Location(name='loc_1 || loc_1', progress_invariant=None, transient_values=frozenset())
@@ -18,3 +18,59 @@ Collecting model info...
 
 	Model info collected
 
+Target location 1 of 1
+Evaluating possibilities...
+	Recursion depth 0
+		Locations solved: 0
+	Recursion depth 1
+		Locations solved: 0
+	Recursion depth 2
+		Locations solved: 0
+	1 locations solved : 
+		Heap Size : 3.56 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0    3   1.77 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    1    4    864  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+			    2    6    423  B                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    3    3    184  B                                                                                                                                                                                                                                                                                                                                                                                                            list
+			    4    1    144  B                                                                                                                                                                                                                                                                                                                                                                                                        function
+
+		Changes to heap since initial call
+			Total objects created : 17
+			Total size difference : 2.96 KB
+			Number of entries : 6
+			Index Count     Size                  Object Name
+			    0    2   1.38 KB                         types.FrameType
+			    1    4    864  B                                     set
+			    2    6    423  B                                     str
+			    3    3    184  B                                    list
+			    4    1    104  B     dict of VariableState.VariableState
+
+		Unaccessable memory: 0  B
+	Recursion depth 1
+		Locations solved: 1
+	2 locations solved : 
+		Heap Size : 10.36 KB
+			Index Count     Size                  Object Name
+			  N/A  N/A     56  B                              final_vals
+			    0   34   4.64 KB                                                                                                                                                                                                                                                                                                                                                                                                             str
+			    1    6   1.36 KB                                                                                                                                                                                                                                                                                                                                                                                                 dict (no owner)
+			    2    2   1.08 KB                                                                                                                                                                                                                                                                                                                                                                                                 types.FrameType
+			    3    7    728  B                                                                                                                                                                                                                                                                                                                                                                             dict of VariableState.VariableState
+			    4    3    648  B                                                                                                                                                                                                                                                                                                                                                                                                             set
+
+		Changes to heap since initial call
+			Total objects created : 75
+			Total size difference : 9.70 KB
+			Number of entries : 10
+			Index Count     Size                  Object Name
+			    0   34   4.64 KB                                     str
+			    1    6   1.36 KB                         dict (no owner)
+			    2    7    728  B     dict of VariableState.VariableState
+			    3    1    704  B                         types.FrameType
+			    4    3    648  B                                     set
+
+		Unaccessable memory: -64  B
+	Recursion depth 0
+		Locations solved: 2

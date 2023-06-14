@@ -5,6 +5,7 @@ import sys
 from ModelInfo import model_info
 from Dependancies import get_location_dependancies
 from CheckRemovals import evaluate_possibilities
+from GatherProbabilities import gather_probabilities
 from VariableState import VariableState
 from NewModel import make_new_model
 from guppy import hpy
@@ -96,7 +97,7 @@ if (len(model.initial_locations) > 1):
 # Obtain initial state from model
 # To preserve model integrity, initial state should not be popped
 for init_state in model.initial_locations:
-    initial_state = init_state 
+    initial_location = init_state 
 print(f'\tInitial state: {init_state}\n')
 workfile.write(f'\tInitial state: {init_state}\n\n')
 
@@ -106,22 +107,26 @@ workfile.write("\tInitialization complete\n\n")
 
 ################################################################################
 # Find target locations, variables, and back edges of model 
-#back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
-back_edges, target_locs, all_vars = model_info(model, target_vars, initial_state, workfile)
+#back_edges, target_locs, all_vars = model_info(model, target_vars, initial_location, workfile)
+back_edges, target_locs, all_vars = model_info(model, target_vars, initial_location, workfile)
 
 # Other_vars is the set of variables that aren't target or other important vars
-all_vars.difference_update(target_vars + important_vars)
-other_vars = all_vars
+other_vars = set()
+for var in all_vars:
+    other_vars.add(var)
+other_vars.difference_update(target_vars + important_vars)
 
 # Dictionary maps each target location to its distributions of variable values
 # key: target location, value: list(VariableState objects) *SET*
 final_vals_map = dict()
+target_assignments = dict()
 
 
+    
 cannot_remove_set = set()
 for i, target in enumerate(target_locs):
-    print(f"Target location {i+1} of {len(target_locs)}")
-    workfile.write(f"Target location {i+1} of {len(target_locs)}\n")
+    print(f"Target location {i+1} of {len(target_locs)}: {target.name}")
+    workfile.write(f"Target location {i+1} of {len(target_locs)}: {target.name}\n")
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
     # it to better determine which variables can actually be removed. For now it isn't used the way
     # I have currently written the code.
@@ -131,27 +136,33 @@ for i, target in enumerate(target_locs):
     # This dictionary keeps track of the value (or distribution of values) of all 
     # variables at this target location. Each variable is initialized to itself,
     # i.e. Name(identifier= 'x') = Name(identifier= 'x')
-    var_values = dict()
-    for var in other_vars:
-        var_values[var] = var
-
-
-    # Final_vals is a list of all the possible values (a distribution) the variables
-    # could be at this location, with their associated probability
-
-    print("Evaluating possibilities...")
-    workfile.write("Evaluating possibilities...\n")
-   
+    print("Assembling Null State Dictionary:\n\tcontained values: ", end='')
+    null_state = dict()
+    for var in all_vars:
+        print(f'{var}', end=', ') 
+        null_state[var] = var
+    null_state = VariableState(null_state)
+    print('\n')
+    
+    print("Gathering probabilities...")
+    workfile.write("Gathering probabilities...\n")
+    
     heapobj = hpy()
     heapobj.setref()
     initialheap = heapobj.heap()
-    final_vals_map[target] = evaluate_possibilities(target, back_edges, VariableState(var_values), initial_state, target, 0, workfile, datafile, set(), initialheap, heapobj) 
-
-    ## Any variables that we can't fully resolve (for any of the possiblities)
-    ## can't be removed from the model as part of the abstraction
-
-    for val in final_vals_map[target]:
-        cannot_remove_set.update(val.cannot_resolve_set())
+    
+    possibilities = list()
+    path = list()
+    possibilities = list()
+    critical_vars = target_vars + important_vars
+    depth = 0
+    gather_probabilities (target, target, initial_location, back_edges, path, possibilities, null_state, critical_vars, depth)
+    
+    # Store this set of possibilities
+    target_assignments[target] = possibilities
+    
+    print(f"\nCompleted target location {i+1} of {len(target_locs)}: {target.name}")
+    print(f"\tFinal Vals: {possibilities}")
 
 
 cannot_remove_set.update(target_vars)
@@ -162,7 +173,6 @@ for target in final_vals_map:
             for val in final_vals_map[target]:
                 val.remove_var(var)
 
- 
 ## Do the setup for creating a new model
 new_context = momba_model.context.Context(momba_model.context.ModelType.DTMC)
 new_context.global_scope = model.scope.parent
@@ -181,7 +191,7 @@ new_network = new_context.create_network(name="Abstracted")
 # This function actually builds the new model, eliminating variables we previously
 # found to be unnecessary, and using the values we evaluated for them to preserve target 
 # variable behavior
-new_model = make_new_model(model, new_context, initial_state, target_locs, final_vals_map, cannot_remove_set)
+new_model = make_new_model(model, new_context, initial_location, target_locs, final_vals_map, cannot_remove_set)
 
 ## Set the variable scope
 new_model.scope = momba_model.context.Scope(new_context, new_context.global_scope)
@@ -202,8 +212,3 @@ new_jani_string = new_jani_string.replace('"syncs": []', f'"syncs": [ {syncs} ]'
 # Export the jani to a file
 with open(new_file, 'w', encoding='utf-8-sig') as new_file:
     new_file.write(new_jani_string)
-
-
-
-
-

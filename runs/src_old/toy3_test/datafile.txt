@@ -1,0 +1,2 @@
+0	3647	3031	17	0	1808	types.FrameType	864	set	423	str	1808	types.FrameType	
+1	8965	8349	63	-64	4749	str	1104	types.FrameType	648	set	4749	str	
