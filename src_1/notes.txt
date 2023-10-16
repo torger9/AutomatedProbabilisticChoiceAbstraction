@@ -1,0 +1,3 @@
+Gather Probabilities
+	Depth First search
+	no explicit data saving (saved in stack frames)

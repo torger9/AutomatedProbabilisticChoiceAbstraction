@@ -61,57 +61,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, initial_state, 
             # format : (locations solved) (total heap size) 
             #          (size difference) (objects created)  (unaccessable)
             #          (largest 3 objects with names)(largest created object and name)
-            
-            heapsnap = heapobj.heap()
-            stats = heapsnap.diff(initialheap)
-            datafile.write(f'{len(visited)}\t{heapsnap.size}\t{stats.size}\t{stats.count}\t{heapobj.heapu().size}\t')
-            for row in range(0,len(heapsnap),1):
-                if row > 2:
-                    break
-                datafile.write(f'{heapsnap[row].size}\t{heapsnap[row].kind}\t')
-            if len(heapsnap) < 3:
-                datafile.write(f'{0}\tN\A\t')
-            if len(heapsnap) < 2:
-                datafile.write(f'{0}\tN\A\t')
-            if len(heapsnap) < 1:
-                datafile.write(f'{0}\tN\A\t')
-            if len(stats) < 1:
-                datafile.write(f'{0}\tN\A\t')
-            else:
-                datafile.write(f'{heapsnap[0].size}\t{heapsnap[0].kind}\t')
-            datafile.write("\n")
-
-            if location.name not in visited:
-                visited.add(location.name)
-                
-                # print status to console
-                print(f'\tlocations solved : {len(visited)} ')
-                
-                # print memory usage data to workfile for review
-                workfile.write(f'\tlocations solved : {len(visited)} \n')
-                workfile.write(f'\t\tHeap Size : {convertSize(heapsnap.size)}\n')
-                workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
-                workfile.write('\t\t\t  N/A  N/A%10s%40s\n' % (convertSize(heapobj.iso(final_vals).size),'final_vals'))
-                #for row in list(heapsnap.stat.get_rows())[:5]:
-                #    workfile.write("%5d%5d%8d%30s\n" %(row.index, row.count, convertSize(row.size), row.name))
-                for n in range(0,len(heapsnap),1):
-                    if n > 4:
-                        break
-                    workfile.write("\t\t\t%5d%5d%10s%40s\n" %(n, heapsnap[n].count, convertSize(heapsnap[n].size), heapsnap[n].kind))
-                
-                workfile.write('\n\t\tChanges to heap since initial call\n')
-                workfile.write(f'\t\t\tTotal objects created : {stats.count}\n')
-                workfile.write(f'\t\t\tTotal size difference : {convertSize(stats.size)}\n')
-                workfile.write(f'\t\t\tNumber of entries : {stats.numrows}\n')
-                workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
-                for count, row in enumerate(stats.get_rows()):
-                    if count > 4:
-                        break
-                    workfile.write("\t\t\t%5d%5d%10s%40s\n" %(row.index, row.count, convertSize(row.size), row.name))
-
-                workfile.write(f'\n\t\tInaccessible memory: {convertSize(heapobj.heapu().size)}\n')
-            del stats
-            del heapsnap
+            print_data(heapobj, initialheap, datafile, workfile, location, solved, final_vals, depth, location_value_map)
 
             # For each possible set of variable values
             for val in location_values:        
@@ -192,9 +142,64 @@ def replace_values_guard(expression, assignments):
         if expression in assignments:
             return assignments[expression]
         return expression
-    
 
+def print_data(heapobj, initialheap, datafile, workfile, location, solved, final_vals, depth, location_value_map):
+    heapsnap = heapobj.heap()
+    stats = heapsnap.diff(initialheap)
+    datafile.write(f'{len(solved)}\t{heapsnap.size}\t{stats.size}\t{stats.count}\t{heapobj.heapu().size}\t')
+    for row in range(0,len(heapsnap),1):
+        if row > 2:
+            break
+        datafile.write(f'{heapsnap[row].size}\t{heapsnap[row].kind}\t')
+    if len(heapsnap) < 3:
+        datafile.write(f'{0}\tN\A\t')
+    if len(heapsnap) < 2:
+        datafile.write(f'{0}\tN\A\t')
+    if len(heapsnap) < 1:
+        datafile.write(f'{0}\tN\A\t')
+    if len(stats) < 1:
+        datafile.write(f'{0}\tN\A\t')
+    else:
+        datafile.write(f'{heapsnap[0].size}\t{heapsnap[0].kind}\t')
+    datafile.write("\n")
 
+    if location.name not in solved:
+        solved.add(location.name)
+
+        # print memory usage data to workfile for review
+        workfile.write(f'\t{len(solved)} locations solved : \n')
+        workfile.write(f'\t\tHeap Size : {convertSize(heapsnap.size)}\n')
+        workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
+        workfile.write('\t\t\t  N/A  N/A%10s%40s\n' % (convertSize(heapobj.iso(final_vals).size),'final_vals'))
+        #for row in list(heapsnap.stat.get_rows())[:5]:
+        #    workfile.write("%5d%5d%8d%30s\n" %(row.index, row.count, convertSize(row.size), row.name))
+        for n in range(0,len(heapsnap),1):
+            if n > 4:
+                break
+            workfile.write("\t\t\t%5d%5d%10s%400s\n" %(n, heapsnap[n].count, convertSize(heapsnap[n].size), heapsnap[n].kind))
+
+        workfile.write('\n\t\tChanges to heap since initial call\n')
+        workfile.write(f'\t\t\tTotal objects created : {stats.count}\n')
+        workfile.write(f'\t\t\tTotal size difference : {convertSize(stats.size)}\n')
+        workfile.write(f'\t\t\tNumber of entries : {stats.numrows}\n')
+        workfile.write('\t\t\tIndex Count     Size                  Object Name\n')
+        for count, row in enumerate(stats.get_rows()):
+            if count > 4:
+                break
+            workfile.write("\t\t\t%5d%5d%10s%40s\n" %(row.index, row.count, convertSize(row.size), row.name))
+
+        workfile.write(f'\n\t\tUnaccessable memory: {convertSize(heapobj.heapu().size)}\n')
+    del stats
+    del heapsnap
+
+    #print(backwards_vals)
+    #print(f"{len(location_value_map)}/77 locations solved")
+    #if len(location_value_map) > 42:
+    #    print(h.heap())
+    print(f'\tRecursion depth {depth}')
+    print(f'\t\tLocations solved: {len(location_value_map)}')
+    workfile.write(f'\tRecursion depth {depth}\n')
+    workfile.write(f'\t\tLocations solved: {len(location_value_map)}\n')
 
 
 

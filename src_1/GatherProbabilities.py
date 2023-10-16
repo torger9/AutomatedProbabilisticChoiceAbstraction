@@ -37,7 +37,7 @@ def gather_probabilities (current_loc, target_loc, initial_loc, back_edges, path
         indent = indent + '\t\t'
         
     if verbose: print(f'\n{indent}Recursion depth: {depth}')
-    if debug: print(f'{indent}Current Location ({current_loc.name}): ({len(back_edges[current_loc])} back edges)\n{indent}Edge list:')
+    if debug: print(f'{indent}Current Location ({current_loc.name}): Back edges ({len(back_edges[current_loc])})\n{indent}Edge list:')
     for i, edge in enumerate(back_edges[current_loc]):
         previous_loc = edge.location
         if debug: print(f'{indent}\tEdge {i+1}: ({previous_loc.name}) --> ({current_loc.name})')
@@ -51,8 +51,6 @@ def gather_probabilities (current_loc, target_loc, initial_loc, back_edges, path
             # Accumulate path edge and destination for later use
             previous_loc = edge.location
             if debug: print(f'\n\t{indent}Edge {i+1}: ({previous_loc.name}) --> ({current_loc.name}) ({len(edge.destinations)} attached destinations)\n{indent}\tGuard {edge.guard}\n\t{indent}Destination list:')
-            for j, destination in enumerate(edge.destinations):
-                if debug: print(f'{indent}\t\tDestination {j+1}: ({edge.location.name}) --> ({destination.location.name})')
             
             for j, destination in enumerate(edge.destinations):
                 # Initial location has been reached, trace path from initial

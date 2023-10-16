@@ -1,0 +1,3 @@
+Check Removals:
+	Breadth First search
+	No saving of hash data
