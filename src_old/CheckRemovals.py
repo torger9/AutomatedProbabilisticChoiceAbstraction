@@ -76,7 +76,6 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 #          (largest 3 objects with names)(largest created object and name)
                 print_data(heapobj, initialheap, datafile, workfile, location, solved, final_vals, depth, location_value_map)
 
-
             # For each possible set of variable values
             for val in backwards_vals:        
                 ## TODO: This check guard function doesn't work in a lot of cases:

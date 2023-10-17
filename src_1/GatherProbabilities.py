@@ -22,10 +22,9 @@ def gather_probabilities (current_loc, target_loc, initial_loc, back_edges, path
 #   initial_loc     (initial location)
 #   back_edges      (dictionary of backward edges for each location)
 #   path            (traced path from target location to initial location)
-#   path_blockers   (placed to block path to prevent repetition)
-#   assignments     (dictionary, key: assignment, value: probability
-#   initial state   (initial state of variables)
-#   critical_vars      (target or important variables)
+#   possibilities   (list of possible variable states and the probability)
+#   null_state      (initial state of variables)
+#   critical_vars   (target or important variables)
 #   depth           (depth of recursion)
 ##########################################################################
     verbose = True
@@ -136,7 +135,7 @@ def gather_probabilities (current_loc, target_loc, initial_loc, back_edges, path
     else:
         print("\n***************************************************"\
             + "*************\nModel Error: Indeterminent Probability"\
-            + "\n\tnon-initial precurser location " + {location.name}\
+            + "\n\tnon-initial precurser location " + {current_loc.name}\
             + "has no originating location\n************************"\
             + "****************************************")
         exit()
